@@ -6,9 +6,8 @@ import com.soywiz.korev.Key.LEFT
 import com.soywiz.korev.Key.RIGHT
 import com.soywiz.korev.Key.UP
 import com.soywiz.korge.animate.animator
+import com.soywiz.korge.view.Camera
 import com.soywiz.korge.view.Container
-import com.soywiz.korge.view.Image
-import com.soywiz.korge.view.centerOn
 import com.soywiz.korge.view.position
 import entities.PlayerStatus.RUN
 import entities.PlayerStatus.RUN_FULL_SPEED
@@ -18,8 +17,8 @@ import exceptions.UninitializedSpriteException
 class Player(
         override var maxHp: Int = 100,
         override var hp: Int = maxHp,
-        override var range: Int = 40,
-        override var sprite: Image? = null,
+        override var range: Double = 100.0,
+        override var sprite: Container? = null,
         override var speed: Double = 3.0,
         override var width: Int = 20,
         override var height: Int = 40,
@@ -28,7 +27,23 @@ class Player(
         var moveYDirection: Key? = null
 ): Entity() {
 
-    fun processMoveCoordinates(): Pair<Double, Double>? {
+    fun mayMove() {
+        sprite?.animator {
+            parallel {
+                processMoveCoordinates()?.let { (px, py) ->
+                    if (playerStatus == RUN) {
+                        sprite!!.position(px, py) //TODO: Find a way to animate smoothly start of run
+                        playerStatus = RUN_FULL_SPEED
+                    } else if (playerStatus == RUN_FULL_SPEED) {
+                        sprite!!.position(px, py)
+                    }
+                    println("X: $px, Y: $py")
+                }
+            }
+        } ?: throw UninitializedSpriteException("Player sprite has not been initialized")
+    }
+
+    private fun processMoveCoordinates(): Pair<Double, Double>? {
         var coordinates: Pair<Double, Double>? = null
         if (playerStatus in setOf(RUN, RUN_FULL_SPEED)){
             sprite?.let { s ->
@@ -44,19 +59,5 @@ class Player(
             }
         }
         return coordinates
-    }
-
-    fun mayMove() {
-        sprite?.animator {
-            parallel {
-                processMoveCoordinates()?.let { (px, py) ->
-                    if (playerStatus == RUN) {
-                        sprite!!.position(px, py) //TODO: Find a way to animate smoothly start of run
-                        playerStatus = RUN_FULL_SPEED
-                    } else if (playerStatus == RUN_FULL_SPEED) sprite!!.position(px, py)
-                    println("X: $px, Y: $py")
-                }
-            }
-        } ?: throw UninitializedSpriteException("Player sprite has not been initialized")
     }
 }
