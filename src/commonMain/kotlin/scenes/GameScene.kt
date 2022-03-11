@@ -27,7 +27,6 @@ class GameScene: Scene() {
     override suspend fun Container.sceneInit() {
         val camera = cameraContainer(MainModule.virtualWidth.toDouble(), MainModule.virtualHeight.toDouble()) {
             generateWorld(world, background_texture)
-            solidRect(50, 50, Colors.RED).position(100, 100)
             player.initDraw(this, 0.0, 0.0, player_png.get(), Player::class.simpleName.toString())
         }
         addUpdater {
