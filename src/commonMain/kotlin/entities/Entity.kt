@@ -17,6 +17,7 @@ open class Entity (
         open var maxHp: Int = 100,
         open var hp: Int = maxHp,
         open var range: Double = 40.0,
+        open var spriteBitmap: BitmapSlice<Bitmap>,
         open var sprite: Container? = null,
         open var speed: Double = 1.0,
         open var width: Int = 200,
