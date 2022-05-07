@@ -8,18 +8,17 @@ import com.soywiz.korev.Key.UP
 import com.soywiz.korge.animate.animator
 import com.soywiz.korge.view.Container
 import com.soywiz.korge.view.position
-import com.soywiz.korim.bitmap.Bitmap
-import com.soywiz.korim.bitmap.BitmapSlice
+import com.soywiz.korim.atlas.Atlas
 import entities.PlayerStatus.RUN
 import entities.PlayerStatus.RUN_FULL_SPEED
 import entities.PlayerStatus.STAY
 import exceptions.UninitializedSpriteException
 
-class Player(
+open class Player(
     override var maxHp: Int = 100,
     override var hp: Int = maxHp,
     override var range: Double = 100.0,
-    override var spriteBitmap: BitmapSlice<Bitmap>,
+    override var spriteAtlas: Atlas,
     override var sprite: Container? = null,
     override var speed: Double = 3.0,
     override var width: Int = 20,
@@ -28,7 +27,7 @@ class Player(
     var moveXDirection: Key? = null,
     var moveYDirection: Key? = null,
     val type: EntityType
-): Entity(spriteBitmap = spriteBitmap) {
+): Entity(spriteAtlas = spriteAtlas) {
 
     fun mayMove() {
         sprite?.animator {

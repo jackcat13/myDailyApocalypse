@@ -8,8 +8,8 @@ import extensions.mapPrototypes
 import scenes.MainScene
 
 object MainModule : Module() {
-	const val virtualWidth = 1280
-	const val virtualHeight = 720
+	const val virtualWidth = 1920
+	const val virtualHeight = 1080
 	override val mainScene = MainScene::class
 	override val size = SizeInt(virtualWidth, virtualHeight) // Virtual Size
 	override val bgcolor = Colors["#2b2b2b"]
