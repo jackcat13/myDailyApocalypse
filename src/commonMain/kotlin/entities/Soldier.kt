@@ -1,14 +1,14 @@
 package entities
 
+import com.soywiz.klock.blockingSleep
+import com.soywiz.klock.seconds
 import com.soywiz.korev.Key
-import com.soywiz.korge.animate.animate
+import com.soywiz.korge.animate.*
 import com.soywiz.korge.view.*
 import com.soywiz.korim.atlas.Atlas
-import com.soywiz.korim.color.ColorAdd
-import com.soywiz.korim.color.Colors.RED
-import com.soywiz.korma.geom.shape.Shape2d
-import com.soywiz.korma.geom.vector.rect
-import extensions.testDamage
+import com.soywiz.korio.async.runBlockingNoJs
+import com.soywiz.korio.async.runBlockingNoSuspensions
+import com.soywiz.korma.interpolation.Easing
 import utils.AnimationTitle
 import utils.AnimationTitle.SLASH
 
@@ -45,6 +45,7 @@ class Soldier (
         enemies.forEach {
             val enemySprite = it.sprite[ENTITY_SPRITE_NAME].first
             if (collidesWith(enemySprite)) {
+                hitAnimation(enemySprite)
                 if (it.hit(damage)) {
                     enemiesToKill.add(it)
                 }
@@ -54,6 +55,15 @@ class Soldier (
         enemiesToKill.forEach {
             it.sprite!!.removeFromParent()
             enemies.remove(it)
+        }
+    }
+
+    private fun hitAnimation(enemySprite: View) {
+        runBlockingNoSuspensions {
+            enemySprite.launchAnimate {
+                enemySprite.alpha(0.5, 0.1.seconds)
+                enemySprite.alpha(1.0)
+            }
         }
     }
 
