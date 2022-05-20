@@ -1,11 +1,13 @@
 package entities
 
+import com.soywiz.klock.seconds
 import com.soywiz.korev.Key
 import com.soywiz.korev.Key.*
 import com.soywiz.korge.animate.animator
 import com.soywiz.korge.view.Container
 import com.soywiz.korge.view.position
 import com.soywiz.korim.atlas.Atlas
+import com.soywiz.korio.async.runBlockingNoSuspensions
 import entities.PlayerStatus.*
 import exceptions.UninitializedSpriteException
 import utils.AnimationTitle
@@ -32,7 +34,7 @@ abstract class Player(
             parallel {
                 processMoveCoordinates()?.let { (px, py) ->
                     if (playerStatus == RUN) {
-                        sprite!!.position(px, py) //TODO: Find a way to animate smoothly start of run
+                        runBlockingNoSuspensions { sprite!!.moveTo(px, py, time = 0.5.seconds) }
                         playerStatus = RUN_FULL_SPEED
                     } else if (playerStatus == RUN_FULL_SPEED) {
                         sprite!!.position(px, py)
