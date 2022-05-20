@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<TextureAtlas imagePath="imp.png" width="82"  height="82">
+    <sprite n="stand-00.png" x="0" y="0" w="82" h="82"/>
+</TextureAtlas>
