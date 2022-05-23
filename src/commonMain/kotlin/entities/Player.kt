@@ -10,6 +10,7 @@ import com.soywiz.korim.atlas.Atlas
 import com.soywiz.korio.async.runBlockingNoSuspensions
 import entities.PlayerStatus.*
 import exceptions.UninitializedSpriteException
+import skills.passive.PassiveSkill
 import utils.AnimationTitle
 
 abstract class Player(
@@ -26,7 +27,8 @@ abstract class Player(
     open var playerStatus: PlayerStatus = STAY,
     open var moveXDirection: Key? = null,
     open var moveYDirection: Key? = null,
-    open var animations: Map<AnimationTitle, Atlas> = mapOf()
+    open var animations: Map<AnimationTitle, Atlas> = mapOf(),
+    open var passiveSkills: MutableList<PassiveSkill> = mutableListOf()
 ): Entity(maxHp, hp, range, spriteAtlas, sprite, speed, width, height, attackSpeed, damage) {
 
     fun mayMove() {
@@ -63,5 +65,13 @@ abstract class Player(
         return coordinates
     }
 
+    fun processAdditionalDamage(): Double{
+        var processedDamage = damage
+        passiveSkills.forEach {
+            processedDamage += it.additionalDamageFlat()
+            processedDamage *= it.additionalDamagePercent()
+        }
+        return processedDamage
+    }
     abstract fun processMainAttack(container: Container, enemies: MutableList<Enemy>)
 }
