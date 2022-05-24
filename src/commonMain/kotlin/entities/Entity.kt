@@ -20,6 +20,7 @@ abstract class Entity (
 ) {
     companion object{
         const val ENTITY_SPRITE_NAME = "Entity"
+        const val RANGE_CIRCLE_NAME = "rangeCircle"
     }
 
     fun initDraw(container: Container, x: Double, y: Double, name: String = ENTITY_SPRITE_NAME) {
@@ -31,7 +32,7 @@ abstract class Entity (
             val entitySprite = sprite(spriteAtlas.getSpriteAnimation(prefix = animationType)).name(name)
             entitySprite.playAnimationLooped(spriteDisplayTime = 0.2.seconds)
             (this@Entity as? Player)?.let {
-                circle(range, Colors["#ffffff00"], Colors["#DF52527f"], 2.0)
+                circle(range, Colors["#ffffff00"], Colors["#DF52527f"], 2.0).name(RANGE_CIRCLE_NAME)
                     .centerOn(entitySprite)
             }
         }.position(x, y)
