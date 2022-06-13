@@ -19,6 +19,6 @@ class MainScene: Scene(){
 			scale(.8)
 			position(MainModule.virtualWidth/2, MainModule.virtualHeight/2)
 		}
-		image.onClick { launchImmediately { sceneContainer.changeTo<GameScene>() } }
+		image.onClick { launchImmediately { sceneContainer.changeTo<MainLevelScene>() } }
 	}
 }

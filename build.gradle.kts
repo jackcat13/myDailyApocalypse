@@ -1,5 +1,7 @@
 import com.soywiz.korge.gradle.*
 
+val assertjVersion: String by project
+
 buildscript {
 	val korgePluginVersion: String by project
 
@@ -14,10 +16,16 @@ buildscript {
 	}
 }
 
+plugins{
+	java
+	jacoco
+}
+
 apply<KorgeGradlePlugin>()
 
 korge {
-	id = "com.jackcat13.roguelike"
+	group = "com.jackcat13.rogueLike"
+	id = "myDailyApocalypse"
 
 // To enable all targets at once
 
@@ -34,4 +42,5 @@ korge {
 	targetIos()
 	targetAndroidIndirect() // targetAndroidDirect()
 	//targetAndroidDirect()
+
 }
