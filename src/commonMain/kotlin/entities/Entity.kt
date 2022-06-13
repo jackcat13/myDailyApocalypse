@@ -4,8 +4,6 @@ import com.soywiz.klock.seconds
 import com.soywiz.korge.view.*
 import com.soywiz.korim.atlas.Atlas
 import com.soywiz.korim.color.Colors
-import com.soywiz.korma.geom.shape.Shape2d
-import com.soywiz.korma.geom.vector.rect
 import entities.SpritesAnimationConstants.STAND
 
 abstract class Entity (

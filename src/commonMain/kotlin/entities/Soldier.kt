@@ -1,14 +1,11 @@
 package entities
 
-import com.soywiz.klock.blockingSleep
 import com.soywiz.klock.seconds
 import com.soywiz.korev.Key
-import com.soywiz.korge.animate.*
+import com.soywiz.korge.animate.launchAnimate
 import com.soywiz.korge.view.*
 import com.soywiz.korim.atlas.Atlas
-import com.soywiz.korio.async.runBlockingNoJs
 import com.soywiz.korio.async.runBlockingNoSuspensions
-import com.soywiz.korma.interpolation.Easing
 import utils.AnimationTitle
 import utils.AnimationTitle.SLASH
 

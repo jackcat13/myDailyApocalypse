@@ -22,10 +22,12 @@ abstract class Enemy(
 ): Entity(maxHp, hp, range, spriteAtlas, sprite, speed, width, height, attackSpeed, damage) {
 
     fun mayFollowPlayer(playerSprite: Container) {
-        if (sprite!!.x < playerSprite.x) sprite!!.x+=speed
-        if (sprite!!.x > playerSprite.x) sprite!!.x-=speed
-        if (sprite!!.y < playerSprite.y) sprite!!.y+=speed
-        if (sprite!!.y > playerSprite.y) sprite!!.y-=speed
+        sprite?.let {
+            if (it.x < playerSprite.x) it.x += speed
+            if (it.x > playerSprite.x) it.x -= speed
+            if (it.y < playerSprite.y) it.y += speed
+            if (it.y > playerSprite.y) it.y -= speed
+        }
     }
 
     fun hit(incommingDamage: Double): Boolean{
