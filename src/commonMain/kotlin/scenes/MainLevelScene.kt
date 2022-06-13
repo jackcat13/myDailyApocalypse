@@ -18,7 +18,7 @@ import module.MainModule
 import utils.EntitiesBuilder.generateImp
 import utils.EntitiesBuilder.soldier
 
-val ResourcesContainer.background_texture by resourceBitmap("grass.png")
+val ResourcesContainer.backgroundTexture by resourceBitmap("grass.png")
 
 class MainLevelScene(): Scene() {
     var world = World()
@@ -26,10 +26,10 @@ class MainLevelScene(): Scene() {
     override suspend fun Container.sceneInit() {
         val currentPlayer: Player = soldier()
         val camera = cameraContainer(MainModule.virtualWidth.toDouble(), MainModule.virtualHeight.toDouble()) {
-            generateWorld(world, background_texture)
+            generateWorld(world, backgroundTexture)
             currentPlayer.initDraw(this, -chunksSize, -chunksSize)
             addUpdater {
-                world = worldLoadingCheck(world, currentPlayer, background_texture)
+                world = worldLoadingCheck(world, currentPlayer, backgroundTexture)
             }
             attacksUpdater(currentPlayer, enemies)
             for(i in 1..10) enemies.add(generateImp(this, currentPlayer)) //TODO: remove when tests on hits completed
