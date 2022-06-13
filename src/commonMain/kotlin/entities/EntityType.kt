@@ -1,5 +1,5 @@
 package entities
 
 enum class EntityType {
-    SOLDIER, MAGE
+    SOLDIER, MAGE, MARINE
 }
