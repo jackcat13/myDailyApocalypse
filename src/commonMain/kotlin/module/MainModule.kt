@@ -13,7 +13,6 @@ object MainModule : Module() {
 	override val mainScene = MainScene::class
 	override val size = SizeInt(virtualWidth, virtualHeight) // Virtual Size
 	override val bgcolor = Colors["#2b2b2b"]
-	override val fullscreen = true
 
 	override suspend fun AsyncInjector.configure() {
 		mapPrototypes()
