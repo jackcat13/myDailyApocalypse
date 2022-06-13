@@ -34,8 +34,8 @@ fun Container.generateChunk(chunk: Chunk, background_texture: Resource<BitmapSli
 
 fun Container.mayGenerateBuilds(bx: Double, by: Double) {
     if (fiftyPercent()){
-        val buildXPosition = GameRandom.generate(bx.toInt(), (bx+chunksSize).toInt())
-        val buildYPosition = GameRandom.generate(by.toInt(), (by+chunksSize).toInt())
+        val buildXPosition = GameRandom.generateRand(bx.toInt(), (bx+chunksSize).toInt())
+        val buildYPosition = GameRandom.generateRand(by.toInt(), (by+chunksSize).toInt())
         sendChildToFront(solidRect(200, 200)
                 .position(buildXPosition, buildYPosition)) //TODO: building collisions and design
         println("Building generate at $buildXPosition / $buildYPosition")

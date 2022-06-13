@@ -4,18 +4,21 @@ import com.soywiz.klock.seconds
 import com.soywiz.korge.view.*
 import com.soywiz.korim.atlas.Atlas
 import com.soywiz.korim.color.Colors
+import com.soywiz.korma.geom.shape.Shape2d
+import com.soywiz.korma.geom.vector.rect
 import entities.SpritesAnimationConstants.STAND
 
 abstract class Entity (
-    open var maxHp: Int = 100,
-    open var hp: Int = maxHp,
+    open var maxHp: Double = 100.0,
+    open var hp: Double = maxHp,
     open var range: Double = 40.0,
     open var spriteAtlas: Atlas,
     open var sprite: Container? = null,
     open var speed: Double = 1.0,
     open var width: Int = 200,
     open var height: Int = 40,
-    open var attackSpeed: Double = 1.0
+    open var attackSpeed: Double = 1.0,
+    open var damage: Double = 1.0,
 ) {
     companion object{
         const val ENTITY_SPRITE_NAME = "Entity"
