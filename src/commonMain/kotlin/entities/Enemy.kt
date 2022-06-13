@@ -30,9 +30,10 @@ abstract class Enemy(
         }
     }
 
-    fun hit(incommingDamage: Double): Boolean{
-        hp -= incommingDamage
-        println("HIT: $incommingDamage. HP: $hp")
+    fun hitBy(player: Player): Boolean{
+        val processedDamage = player.processAdditionalDamage()
+        hp -= processedDamage
+        println("HIT: $processedDamage. HP: $hp")
         return hp <= 0
     }
 }

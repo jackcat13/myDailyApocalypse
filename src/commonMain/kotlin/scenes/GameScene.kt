@@ -19,6 +19,7 @@ import extensions.checkMoves
 import extensions.generateWorld
 import extensions.worldLoadingCheck
 import module.MainModule
+import skills.passive.LightningStrike
 import utils.Animations
 import utils.GameRandom.generateRand
 
