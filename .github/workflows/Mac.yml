@@ -23,11 +23,17 @@ jobs:
       - name: Build for mac x 64
         run: ./gradlew packageMacosX64AppRelease
 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: buildDebug
+          path:  build
+
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            build/*.app
+            build/unnamed-macosArm64-release.app
+            build/unnamed-macosX64-release.app
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
