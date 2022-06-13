@@ -4,6 +4,7 @@ import com.soywiz.klock.seconds
 import com.soywiz.korev.Key
 import com.soywiz.korev.Key.*
 import com.soywiz.korge.animate.animator
+import com.soywiz.korge.view.Circle
 import com.soywiz.korge.view.Container
 import com.soywiz.korge.view.position
 import com.soywiz.korim.atlas.Atlas
@@ -53,25 +54,38 @@ abstract class Player(
             sprite?.let { s ->
                 coordinates = s.x to s.y
                 moveXDirection?.let {
-                    if (it == RIGHT) coordinates = coordinates!!.first.plus(speed) to coordinates!!.second
-                    else if (it == LEFT) coordinates = coordinates!!.first.minus(speed) to coordinates!!.second
+                    if (it == RIGHT) coordinates = coordinates!!.first.plus(processSpeed()) to coordinates!!.second
+                    else if (it == LEFT) coordinates = coordinates!!.first.minus(processSpeed()) to coordinates!!.second
                 }
                 moveYDirection?.let {
-                    if (it == UP) coordinates = coordinates!!.first to coordinates!!.second.minus(speed)
-                    else if (it == DOWN) coordinates = coordinates!!.first to coordinates!!.second.plus(speed)
+                    if (it == UP) coordinates = coordinates!!.first to coordinates!!.second.minus(processSpeed())
+                    else if (it == DOWN) coordinates = coordinates!!.first to coordinates!!.second.plus(processSpeed())
                 }
             }
         }
         return coordinates
     }
 
-    fun processAdditionalDamage(): Double{
+    fun processDamage(): Double{
         var processedDamage = damage
         passiveSkills.forEach {
             processedDamage += it.additionalDamageFlat()
-            processedDamage *= it.additionalDamagePercent()
+            processedDamage *= it.additionalDamageMultiplier()
         }
         return processedDamage
     }
+    fun processSpeed(): Double{
+        var processedSpeed = speed
+        passiveSkills.forEach { processedSpeed += it.additionalSpeed() }
+        return processedSpeed
+    }
+
+    fun processRange(): Double{
+        var processedRange = range
+        passiveSkills.forEach { processedRange += it.additionalRange() }
+        (sprite!!.getChildByName(RANGE_CIRCLE_NAME) as Circle).radius = processedRange
+        return processedRange
+    }
+
     abstract fun processMainAttack(container: Container, enemies: MutableList<Enemy>)
 }

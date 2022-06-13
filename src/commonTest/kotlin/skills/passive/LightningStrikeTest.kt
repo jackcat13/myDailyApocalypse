@@ -6,7 +6,7 @@ import entities.Soldier
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class LightningSkillsTest {
+class LightningStrikeTest {
 
     @Test
     fun `lightning strike for new soldier should deals 75`(){
@@ -14,6 +14,6 @@ class LightningSkillsTest {
         val imp = Imp(spriteAtlas = Atlas(listOf()))
         imp.hitBy(soldier)
         assertEquals(imp.hp, 25.0)
-        assertEquals(soldier.processAdditionalDamage(), 75.0)
+        assertEquals(soldier.processDamage(), 75.0)
     }
 }

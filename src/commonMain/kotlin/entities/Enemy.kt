@@ -31,7 +31,7 @@ abstract class Enemy(
     }
 
     fun hitBy(player: Player): Boolean{
-        val processedDamage = player.processAdditionalDamage()
+        val processedDamage = player.processDamage()
         hp -= processedDamage
         println("HIT: $processedDamage. HP: $hp")
         return hp <= 0
