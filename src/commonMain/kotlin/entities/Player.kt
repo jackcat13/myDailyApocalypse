@@ -1,33 +1,34 @@
 package entities
 
+import com.soywiz.klock.timesPerSecond
 import com.soywiz.korev.Key
-import com.soywiz.korev.Key.DOWN
-import com.soywiz.korev.Key.LEFT
-import com.soywiz.korev.Key.RIGHT
-import com.soywiz.korev.Key.UP
+import com.soywiz.korev.Key.*
 import com.soywiz.korge.animate.animator
 import com.soywiz.korge.view.Container
+import com.soywiz.korge.view.addFixedUpdater
 import com.soywiz.korge.view.position
 import com.soywiz.korim.atlas.Atlas
-import entities.PlayerStatus.RUN
-import entities.PlayerStatus.RUN_FULL_SPEED
-import entities.PlayerStatus.STAY
+import com.soywiz.korim.bitmap.Bitmap
+import entities.PlayerStatus.*
 import exceptions.UninitializedSpriteException
+import utils.AnimationTitle
+import utils.Animations
 
-open class Player(
+abstract class Player(
     override var maxHp: Int = 100,
     override var hp: Int = maxHp,
     override var range: Double = 100.0,
     override var spriteAtlas: Atlas,
     override var sprite: Container? = null,
     override var speed: Double = 3.0,
-    override var width: Int = 20,
-    override var height: Int = 40,
-    var playerStatus: PlayerStatus = STAY,
-    var moveXDirection: Key? = null,
-    var moveYDirection: Key? = null,
-    val type: EntityType
-): Entity(spriteAtlas = spriteAtlas) {
+    override var width: Int = 82,
+    override var height: Int = 82,
+    override var attackSpeed: Double = 1.0,
+    open var playerStatus: PlayerStatus = STAY,
+    open var moveXDirection: Key? = null,
+    open var moveYDirection: Key? = null,
+    open var animations: Map<AnimationTitle, Atlas> = mapOf()
+): Entity(maxHp, hp, range, spriteAtlas, sprite, speed, width, height, attackSpeed) {
 
     fun mayMove() {
         sprite?.animator {
@@ -62,4 +63,6 @@ open class Player(
         }
         return coordinates
     }
+
+    abstract fun processMainAttack(container: Container)
 }
