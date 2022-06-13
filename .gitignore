@@ -1,7 +1,6 @@
 .gradle/
 .idea/
 build/
-gradle/
 kotlin-js-store/
 hs_err_pid*.log
 **/.DS_Store
