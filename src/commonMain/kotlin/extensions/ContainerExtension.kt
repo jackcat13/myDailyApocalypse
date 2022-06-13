@@ -11,7 +11,7 @@ import com.soywiz.korge.view.Container
 import com.soywiz.korge.view.container
 import com.soywiz.korge.view.image
 import com.soywiz.korge.view.position
-import com.soywiz.korge.view.size
+import com.soywiz.korge.view.solidRect
 import com.soywiz.korim.bitmap.Bitmap
 import com.soywiz.korim.bitmap.BitmapSlice
 import com.soywiz.korio.resources.Resource
@@ -20,6 +20,8 @@ import entities.Player
 import entities.PlayerStatus.RUN
 import entities.PlayerStatus.RUN_FULL_SPEED
 import entities.PlayerStatus.STAY
+import utils.GameRandom
+import utils.GameRandom.fiftyPercent
 
 fun Container.checkMoves(player: Player) {
     keys {
@@ -57,7 +59,18 @@ fun Container.generateWorld(world: World, background_texture: Resource<BitmapSli
         it.beginPosition.let { (bx, by) ->
             it.container = container {
                 image(background_texture)
+                mayGenerateBuilds(bx, by)
             }.position(bx, by)
         }
+    }
+}
+
+private fun Container.mayGenerateBuilds(bx: Double, by: Double) {
+    if (fiftyPercent()){
+        val buildXPosition = GameRandom.generate(bx.toInt(), (bx+chunksSize).toInt())
+        val buildYPosition = GameRandom.generate(by.toInt(), (by+chunksSize).toInt())
+        sendChildToFront(solidRect(200, 200)
+                .position(buildXPosition, buildYPosition)) //TODO: building collisions and design
+        println("Building generate at $buildXPosition / $buildYPosition")
     }
 }
