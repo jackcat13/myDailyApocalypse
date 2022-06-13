@@ -1,15 +1,16 @@
 package entities
 
 import com.soywiz.klock.seconds
-import com.soywiz.korev.Key
-import com.soywiz.korev.Key.*
 import com.soywiz.korge.animate.animator
 import com.soywiz.korge.view.Circle
 import com.soywiz.korge.view.Container
 import com.soywiz.korge.view.position
 import com.soywiz.korim.atlas.Atlas
 import com.soywiz.korio.async.runBlockingNoSuspensions
-import entities.PlayerStatus.*
+import config.GameConfig
+import entities.PlayerStatus.RUN
+import entities.PlayerStatus.RUN_FULL_SPEED
+import entities.PlayerStatus.STAY
 import exceptions.UninitializedSpriteException
 import skills.passive.PassiveSkill
 import utils.AnimationTitle
@@ -26,8 +27,8 @@ abstract class Player(
     override var attackSpeed: Double = 1.0,
     override var damage: Double = 50.0,
     open var playerStatus: PlayerStatus = STAY,
-    open var moveXDirection: Key? = null,
-    open var moveYDirection: Key? = null,
+    open var moveXDirection: Char? = null,
+    open var moveYDirection: Char? = null,
     open var animations: Map<AnimationTitle, Atlas> = mapOf(),
     open var passiveSkills: MutableList<PassiveSkill> = mutableListOf()
 ): Entity(maxHp, hp, range, spriteAtlas, sprite, speed, width, height, attackSpeed, damage) {
@@ -54,12 +55,12 @@ abstract class Player(
             sprite?.let { s ->
                 coordinates = s.x to s.y
                 moveXDirection?.let {
-                    if (it == RIGHT) coordinates = coordinates!!.first.plus(processSpeed()) to coordinates!!.second
-                    else if (it == LEFT) coordinates = coordinates!!.first.minus(processSpeed()) to coordinates!!.second
+                    if (it == GameConfig.keyMap.right) coordinates = coordinates!!.first.plus(processSpeed()) to coordinates!!.second
+                    else if (it == GameConfig.keyMap.left) coordinates = coordinates!!.first.minus(processSpeed()) to coordinates!!.second
                 }
                 moveYDirection?.let {
-                    if (it == UP) coordinates = coordinates!!.first to coordinates!!.second.minus(processSpeed())
-                    else if (it == DOWN) coordinates = coordinates!!.first to coordinates!!.second.plus(processSpeed())
+                    if (it == GameConfig.keyMap.up) coordinates = coordinates!!.first to coordinates!!.second.minus(processSpeed())
+                    else if (it == GameConfig.keyMap.down) coordinates = coordinates!!.first to coordinates!!.second.plus(processSpeed())
                 }
             }
         }

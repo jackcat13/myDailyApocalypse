@@ -1,9 +1,9 @@
 package extensions
 
-import com.soywiz.korev.Key.*
 import com.soywiz.korev.KeyEvent
 import com.soywiz.korge.input.keys
 import com.soywiz.korge.view.Container
+import config.GameConfig
 import entities.Player
 import entities.PlayerStatus
 
@@ -12,8 +12,8 @@ fun Container.checkMoves(player: Player) {
         down {
             if (it.isMoveKey()) {
                 if (player.playerStatus != PlayerStatus.RUN_FULL_SPEED) player.playerStatus = PlayerStatus.RUN
-                if (it.isXDirection()) player.moveXDirection = it.key
-                if (it.isYDirection()) player.moveYDirection = it.key
+                if (it.isXDirection()) player.moveXDirection = it.character
+                if (it.isYDirection()) player.moveYDirection = it.character
             }
         }
         up {
@@ -28,13 +28,13 @@ fun Container.checkMoves(player: Player) {
 }
 
 private fun KeyEvent.isMoveKey(): Boolean {
-    return key == DOWN || key == UP || key == LEFT || key == RIGHT
+    return character == GameConfig.keyMap.down || character == GameConfig.keyMap.up || character == GameConfig.keyMap.left || character == GameConfig.keyMap.right
 }
 
 private fun KeyEvent.isXDirection(): Boolean {
-    return key == LEFT || key == RIGHT
+    return character == GameConfig.keyMap.left || character == GameConfig.keyMap.right
 }
 
 private fun KeyEvent.isYDirection(): Boolean {
-    return key == DOWN || key == UP
+    return character == GameConfig.keyMap.down || character == GameConfig.keyMap.up
 }

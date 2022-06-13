@@ -1,7 +1,6 @@
 package entities
 
 import com.soywiz.klock.seconds
-import com.soywiz.korev.Key
 import com.soywiz.korge.animate.launchAnimate
 import com.soywiz.korge.view.*
 import com.soywiz.korim.atlas.Atlas
@@ -22,8 +21,8 @@ class Soldier (
         override var attackSpeed: Double = 1.0,
         override var damage: Double = 60.0,
         override var playerStatus: PlayerStatus = PlayerStatus.STAY,
-        override var moveXDirection: Key? = null,
-        override var moveYDirection: Key? = null,
+        override var moveXDirection: Char? = null,
+        override var moveYDirection: Char? = null,
         override var animations: Map<AnimationTitle, Atlas>,
         override var passiveSkills: MutableList<PassiveSkill> = mutableListOf(),
 ): Player(maxHp, hp, range, spriteAtlas, sprite, speed, width, height, attackSpeed, damage, playerStatus, moveXDirection, moveYDirection, animations, passiveSkills) {
