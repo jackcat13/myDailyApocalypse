@@ -21,6 +21,18 @@ plugins{
 
 tasks.jacocoTestReport {
 	dependsOn(tasks.findByName("jvmTest"))
+
+	val coverageSourceDirs = arrayOf(
+			"src/commonMain"
+	)
+	val classFiles = File("${buildDir}/classes/kotlin/jvm/").walkBottomUp().toSet()
+	classDirectories.setFrom(classFiles)
+	sourceDirectories.setFrom(files(coverageSourceDirs))
+	executionData.setFrom(files("${buildDir}/jacoco/jvmTest.exec"))
+	reports{
+		html.required.set(true)
+		csv.required.set(true)
+	}
 }
 
 apply<KorgeGradlePlugin>()
