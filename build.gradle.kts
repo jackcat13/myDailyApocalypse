@@ -1,9 +1,7 @@
 import com.soywiz.korge.gradle.*
 
-val assertjVersion: String by project
-
 buildscript {
-	val korgePluginVersion: String by project
+	val korgePluginVersion = "2.7.0"
 
 	repositories {
 		mavenLocal()
