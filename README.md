@@ -1,4 +1,4 @@
-![Jacoco coverage](.github/badges/jacoco.svg?label=coverage)
+[![codecov](https://codecov.io/gh/jackcat13/myDailyApocalypse/branch/main/graph/badge.svg?token=FGP7QVU08I)](https://codecov.io/gh/jackcat13/myDailyApocalypse)
 
 # To build the project
 
