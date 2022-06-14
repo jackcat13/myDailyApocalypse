@@ -1,6 +1,8 @@
 package config;
 
-import kotlin.annotation.AnnotationRetention.RUNTIME
+import kotlin.annotation.AnnotationRetention.BINARY
 
-@Retention(RUNTIME)
+@Retention(BINARY)
 annotation class ExcludeFromJacocoGeneratedReport(val reason: String = "Not provided")
+
+typealias NoCoverage = ExcludeFromJacocoGeneratedReport
