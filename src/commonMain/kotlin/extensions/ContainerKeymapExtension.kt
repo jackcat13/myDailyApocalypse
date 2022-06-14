@@ -1,25 +1,32 @@
 package extensions
 
 import com.soywiz.korge.ui.uiTextInput
-import com.soywiz.korge.view.Container
-import com.soywiz.korge.view.container
-import com.soywiz.korge.view.position
-import com.soywiz.korge.view.text
+import com.soywiz.korge.view.*
 import config.GameConfig
 
-private const val FIRST_COLUMNS_X = 150.0
+const val FIRST_COLUMNS_X = 150.0
+const val UP_INPUT = "upInput"
+const val UP_INPUT_TEXT = "Up : "
+const val DOWN_INPUT = "downInput"
+const val DOWN_INPUT_TEXT = "Down : "
+const val LEFT_INPUT = "leftInput"
+const val LEFT_INPUT_TEXT = "Left : "
+const val RIGHT_INPUT = "rightInput"
+const val RIGHT_INPUT_TEXT = "Right : "
+const val POWER_INPUT = "powerInput"
+const val POWER_INPUT_TEXT = "Power : "
 private const val TEXT_INPUT_X = 70.0
 
 fun Container.keymapTextInputs() {
-    container { saveUpKeyInput() }.position(FIRST_COLUMNS_X, 10.0)
-    container { saveDownKeyInput() }.position(FIRST_COLUMNS_X, 40.0)
-    container { saveLeftKeyInput() }.position(FIRST_COLUMNS_X, 70.0)
-    container { saveRightKeyInput() }.position(FIRST_COLUMNS_X, 100.0)
-    container { savePowersKeyInput() }.position(FIRST_COLUMNS_X, 130.0)
+    container { saveUpKeyInput() }.position(FIRST_COLUMNS_X, 10.0).name(UP_INPUT)
+    container { saveDownKeyInput() }.position(FIRST_COLUMNS_X, 40.0).name(DOWN_INPUT)
+    container { saveLeftKeyInput() }.position(FIRST_COLUMNS_X, 70.0).name(LEFT_INPUT)
+    container { saveRightKeyInput() }.position(FIRST_COLUMNS_X, 100.0).name(RIGHT_INPUT)
+    container { savePowersKeyInput() }.position(FIRST_COLUMNS_X, 130.0).name(POWER_INPUT)
 }
 
 private fun Container.saveUpKeyInput(){
-    text("Up : ")
+    text(UP_INPUT_TEXT)
     val upTextInput = uiTextInput(GameConfig.keyMap.up.toString())
     upTextInput.x = TEXT_INPUT_X
     upTextInput.onFocused { it.text = "" }
@@ -27,7 +34,7 @@ private fun Container.saveUpKeyInput(){
 }
 
 private fun Container.saveDownKeyInput(){
-    text("Down : ")
+    text(DOWN_INPUT_TEXT)
     val downTextInput = uiTextInput(GameConfig.keyMap.down.toString())
     downTextInput.x = TEXT_INPUT_X
     downTextInput.onFocused { it.text = "" }
@@ -35,7 +42,7 @@ private fun Container.saveDownKeyInput(){
 }
 
 private fun Container.saveLeftKeyInput(){
-    text("Left : ")
+    text(LEFT_INPUT_TEXT)
     val leftTextInput = uiTextInput(GameConfig.keyMap.left.toString())
     leftTextInput.x = TEXT_INPUT_X
     leftTextInput.onFocused { it.text = "" }
@@ -43,7 +50,7 @@ private fun Container.saveLeftKeyInput(){
 }
 
 private fun Container.saveRightKeyInput(){
-    text("Right : ")
+    text(RIGHT_INPUT_TEXT)
     val rightTextInput = uiTextInput(GameConfig.keyMap.right.toString())
     rightTextInput.x = TEXT_INPUT_X
     rightTextInput.onFocused { it.text = "" }
@@ -51,7 +58,7 @@ private fun Container.saveRightKeyInput(){
 }
 
 private fun Container.savePowersKeyInput(){
-    text("Powers : ")
+    text(POWER_INPUT_TEXT)
     val powersTextInput = uiTextInput(GameConfig.keyMap.powers.toString())
     powersTextInput.x = TEXT_INPUT_X
     powersTextInput.onFocused { it.text = "" }

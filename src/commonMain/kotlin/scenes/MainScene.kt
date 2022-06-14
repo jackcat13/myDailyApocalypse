@@ -7,10 +7,12 @@ import com.soywiz.korge.ui.uiButton
 import com.soywiz.korge.view.Container
 import com.soywiz.korge.view.position
 import com.soywiz.korio.async.launchImmediately
+import config.ExcludeFromJacocoGeneratedReport
 import config.GameConfig
 import config.Keymap
 import module.MainModule
 
+@ExcludeFromJacocoGeneratedReport("Won't test scenes, focus is on logic testing")
 class MainScene: Scene(){
 
 	companion object{
