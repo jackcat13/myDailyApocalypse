@@ -38,7 +38,7 @@ abstract class Player(
             parallel {
                 processMoveCoordinates()?.let { (px, py) ->
                     if (playerStatus == RUN) {
-                        runBlockingNoSuspensions { sprite!!.moveTo(px, py, time = 0.5.seconds) }
+                        runBlockingNoSuspensions { sprite!!.position(px, py) }
                         playerStatus = RUN_FULL_SPEED
                     } else if (playerStatus == RUN_FULL_SPEED) {
                         sprite!!.position(px, py)
@@ -76,7 +76,7 @@ abstract class Player(
         return processedDamage
     }
     fun processSpeed(): Double{
-        var processedSpeed = speed
+        var processedSpeed = if (playerStatus == RUN_FULL_SPEED) speed else speed/2
         passiveSkills.forEach { processedSpeed += it.additionalSpeed() }
         return processedSpeed
     }

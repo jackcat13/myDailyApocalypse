@@ -7,6 +7,7 @@ import com.soywiz.korge.view.Container
 import com.soywiz.korge.view.addUpdater
 import com.soywiz.korge.view.camera.cameraContainer
 import com.soywiz.korio.resources.ResourcesContainer
+import config.ExcludeFromJacocoGeneratedReport
 import config.GameConfig.chunksSize
 import entities.Enemy
 import entities.Player
@@ -20,6 +21,7 @@ import utils.EntitiesBuilder.soldier
 
 val ResourcesContainer.backgroundTexture by resourceBitmap("grass.png")
 
+@ExcludeFromJacocoGeneratedReport("Won't test scenes, focus is on logic testing")
 class MainLevelScene(): Scene() {
     var world = World()
     val enemies: MutableList<Enemy> = mutableListOf()
