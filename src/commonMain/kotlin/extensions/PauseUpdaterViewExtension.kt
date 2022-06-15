@@ -7,8 +7,14 @@ import com.soywiz.korge.view.addUpdater
 import com.soywiz.korio.lang.Cancellable
 import config.GameStatus
 
+/**
+ * Wrapper over [addUpdater] function to add pausing mechanism
+ */
 fun Container.addUpdaterWithPause(function: () -> Unit) = addUpdater { if (GameStatus.pause.not()) function.invoke() }
 
+/**
+ * Wrapper over [addFixedUpdater] function to add pausing mechanism
+ */
 fun Container.addFixedUpdaterWithPause(timesPerSecond: Frequency,
                                        initial: Boolean = true,
                                        limitCallsPerFrame: Int = 16,

@@ -19,6 +19,11 @@ import utils.EntitiesBuilder.soldier
 
 val ResourcesContainer.backgroundTexture by resourceBitmap("grass.png")
 
+/**
+ * Main level scene when the game is started from the menu.
+ * @param world The game world object used for procedural generation
+ * @param enemies List of enemies that appear during the game
+ */
 @ExcludeFromJacocoGeneratedReport("Won't test scenes, focus is on logic testing")
 class MainLevelScene(): Scene() {
     var world = World()

@@ -12,6 +12,9 @@ import config.GameConfig
 import config.Keymap
 import module.MainModule
 
+/**
+ * Main menu scene to start the game or to configure it or to buy power ups.
+ */
 @ExcludeFromJacocoGeneratedReport("Won't test scenes, focus is on logic testing")
 class MainScene: Scene(){
 

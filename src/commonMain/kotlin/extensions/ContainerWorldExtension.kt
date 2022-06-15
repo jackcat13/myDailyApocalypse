@@ -15,13 +15,18 @@ import entities.Player
 import utils.GameRandom
 import utils.GameRandom.fiftyPercent
 
+/**
+ * Handles the game world generation.
+ * @param world Mutable world for generation or regeneration
+ * @param backgroundTexture The background texture to use for chunks generated
+ */
 fun Container.generateWorld(world: World, backgroundTexture: Resource<BitmapSlice<Bitmap>>) {
     world.chunks.onEach {
         generateChunk(it, backgroundTexture)
     }
 }
 
-fun Container.generateChunk(chunk: Chunk, backgroundTexture: Resource<BitmapSlice<Bitmap>>) {
+private fun Container.generateChunk(chunk: Chunk, backgroundTexture: Resource<BitmapSlice<Bitmap>>) {
     chunk.beginPosition.let { (bx, by) ->
         println("Generate chunk with position $bx /// $by")
         chunk.chunkContainer = container {
@@ -32,7 +37,7 @@ fun Container.generateChunk(chunk: Chunk, backgroundTexture: Resource<BitmapSlic
     }
 }
 
-fun Container.mayGenerateBuilds(bx: Double, by: Double) {
+private fun Container.mayGenerateBuilds(bx: Double, by: Double) {
     if (fiftyPercent()){
         val buildXPosition = GameRandom.generateRand(bx.toInt(), (bx+chunksSize).toInt())
         val buildYPosition = GameRandom.generateRand(by.toInt(), (by+chunksSize).toInt())
@@ -42,6 +47,13 @@ fun Container.mayGenerateBuilds(bx: Double, by: Double) {
     }
 }
 
+/**
+ * Checks if the world needs to be generated again.
+ * It happens when the player is reaching the most far chunks
+ * @param world The world to regenerate
+ * @param player The player that moves in the world
+ * @param backgroundTexture The background texture to use for the chunk
+ */
 fun Container.worldLoadingCheck(world: World, player: Player, backgroundTexture: Resource<BitmapSlice<Bitmap>>): World {
     if (player.sprite!!.x > world.chunks[2].beginPosition.first){
         return mayRefreshRightSide(world, backgroundTexture)

@@ -1,5 +1,8 @@
 package utils
 
+/**
+ * Object responsible for the game RNG
+ */
 object GameRandom {
     fun ninetyPercent() = generateRand(1,10) != 10
     fun fiftyPercent() = generateRand(1,2) == 1

@@ -9,6 +9,9 @@ import com.soywiz.korio.async.launchImmediately
 import config.ExcludeFromJacocoGeneratedReport
 import extensions.keymapTextInputs
 
+/**
+ * Scene to handle game keymap configuration
+ */
 @ExcludeFromJacocoGeneratedReport("Won't test scenes, focus is on logic testing")
 class KeymapConfigurationScene : Scene() {
     companion object{

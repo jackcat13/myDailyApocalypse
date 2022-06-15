@@ -8,6 +8,9 @@ import config.ExcludeFromJacocoGeneratedReport
 import extensions.mapPrototypes
 import scenes.MainScene
 
+/**
+ * Main game module for korge engine.
+ */
 object MainModule : Module() {
 	const val virtualWidth = 1920
 	const val virtualHeight = 1080

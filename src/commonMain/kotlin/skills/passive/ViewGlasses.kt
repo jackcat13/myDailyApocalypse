@@ -2,6 +2,9 @@ package skills.passive
 
 import config.ExcludeFromJacocoGeneratedReport
 
+/**
+ * View glasses passive skill class. Object that gives additional range.
+ */
 class ViewGlasses(): PassiveSkill("View glasses") {
 
     @ExcludeFromJacocoGeneratedReport("This passive has no impact on flat damage.")

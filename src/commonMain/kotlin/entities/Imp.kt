@@ -5,6 +5,22 @@ import com.soywiz.korge.view.Container
 import com.soywiz.korim.atlas.Atlas
 import utils.AnimationTitle
 
+/**
+ * Imp class to create imp enemies
+ * @property maxHp Maximum Health
+ * @property hp Current health
+ * @property range Range
+ * @property spriteAtlas Imp sprite atlas
+ * @property sprite Imp sprite
+ * @property speed Speed
+ * @property width Width
+ * @property height Height
+ * @property attackSpeed Attack speed
+ * @property damage Damage
+ * @property moveXDirection Left of Right direction
+ * @property moveYDirection Up or Down direction
+ * @property animations Imp animations
+ */
 class Imp(
     override var maxHp: Double = 100.0,
     override var hp: Double = maxHp,

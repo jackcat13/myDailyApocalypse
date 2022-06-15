@@ -2,6 +2,9 @@ package skills.passive
 
 import config.ExcludeFromJacocoGeneratedReport
 
+/**
+ * Hell stone passive skill class. Object that double the player damage.
+ */
 class HellStone(): PassiveSkill("Hell stone") {
 
     @ExcludeFromJacocoGeneratedReport("This passive has no impact on flat damage.")
