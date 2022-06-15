@@ -1,12 +1,12 @@
 package utils
 
 import com.soywiz.korge.view.Container
-import com.soywiz.korge.view.addUpdater
 import com.soywiz.korim.atlas.readAtlas
 import com.soywiz.korio.file.std.resourcesVfs
 import entities.Imp
 import entities.Player
 import entities.Soldier
+import extensions.addUpdaterWithPause
 import utils.GameRandom.generateRand
 
 object EntitiesBuilder{
@@ -14,7 +14,7 @@ object EntitiesBuilder{
     internal suspend fun generateImp(container: Container, currentPlayer: Player): Imp {
         val imp = imp()
         imp.initDraw(container, currentPlayer.sprite!!.x+ generateRand(-600, 600), currentPlayer.sprite!!.y+ generateRand(-600, 600))
-        container.addUpdater { imp.mayFollowPlayer(currentPlayer.sprite!!) }
+        container.addUpdaterWithPause { imp.mayFollowPlayer(currentPlayer.sprite!!) }
         return imp
     }
 
