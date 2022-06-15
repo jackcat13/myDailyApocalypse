@@ -8,8 +8,11 @@ import com.soywiz.korio.file.std.resourcesVfs
 import com.soywiz.korma.geom.Point
 import config.GameConfig
 import entities.PlayerStatus.RUN
+import utils.EntitiesBuilder
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class PlayerTest: ViewsForTesting() {
 
@@ -20,6 +23,18 @@ class PlayerTest: ViewsForTesting() {
         soldier.mayMove()
         blockingSleep(0.6.seconds)
         assertEquals(Point(0.0, 0.0), soldier.sprite!!.pos)
+    }
+
+    @Test
+    fun `player hit by imp should take damage`() = viewsTest{
+        val imp = EntitiesBuilder.imp()
+        val soldier = EntitiesBuilder.soldier()
+        soldier.initDraw(this, 0.0, 0.0)
+        soldier.hitBy(imp)
+        assertEquals(105.0, soldier.hp)
+        assertFalse(soldier.hitBy(imp))
+        imp.damage = 105.0
+        assertTrue(soldier.hitBy(imp))
     }
 
     @Test

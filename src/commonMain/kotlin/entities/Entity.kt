@@ -1,9 +1,11 @@
 package entities
 
 import com.soywiz.klock.seconds
+import com.soywiz.korge.animate.launchAnimate
 import com.soywiz.korge.view.*
 import com.soywiz.korim.atlas.Atlas
 import com.soywiz.korim.color.Colors
+import com.soywiz.korio.async.runBlockingNoSuspensions
 import entities.SpritesAnimationConstants.STAND
 
 /**
@@ -59,5 +61,17 @@ abstract class Entity (
                     .centerOn(entitySprite)
             }
         }.position(x, y)
+    }
+
+    /**
+     * Hit animation of an entity
+     */
+    fun View.hitAnimation() {
+        runBlockingNoSuspensions {
+            launchAnimate {
+                alpha(0.5, 0.1.seconds)
+                alpha(1.0)
+            }
+        }
     }
 }

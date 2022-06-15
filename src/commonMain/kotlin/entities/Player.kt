@@ -7,9 +7,8 @@ import com.soywiz.korge.view.position
 import com.soywiz.korim.atlas.Atlas
 import com.soywiz.korio.async.runBlockingNoSuspensions
 import config.GameConfig
-import entities.PlayerStatus.RUN
-import entities.PlayerStatus.RUN_FULL_SPEED
-import entities.PlayerStatus.STAY
+import config.GameStatus
+import entities.PlayerStatus.*
 import exceptions.UninitializedSpriteException
 import skills.active.ActiveSkill
 import skills.passive.PassiveSkill
@@ -70,6 +69,23 @@ abstract class Player(
                 }
             }
         } ?: throw UninitializedSpriteException("Player sprite has not been initialized")
+    }
+
+    /**
+     * Process hit received by an enemy.
+     * @param player The players that hits the enemy
+     * @return boolean to indicate if the current enemy is dead (true) or not (false).
+     */
+    fun hitBy(enemy: Enemy): Boolean{
+        hp -= enemy.damage
+        println("HIT: ${enemy.damage}. HP: $hp")
+        sprite!!.hitAnimation()
+        if (hp <= 0) {
+            playerStatus = DEAD
+            GameStatus.pause = true
+            return true
+        }
+        return false
     }
 
     private fun processMoveCoordinates(): Pair<Double, Double>? {
