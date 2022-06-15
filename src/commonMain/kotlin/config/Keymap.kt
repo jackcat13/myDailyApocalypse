@@ -2,6 +2,14 @@ package config
 
 import com.soywiz.korge.service.storage.NativeStorage
 
+/**
+ * Handles keymap for the game actions. Can be configured.
+ * @property up To move player in up direction
+ * @property down To move player in down direction
+ * @property left To move player in left direction
+ * @property right To move player in right direction
+ * @property powers To open powers menu
+ */
 class Keymap(
         var up: Char = 'z',
         var down: Char = 's',
@@ -13,8 +21,11 @@ class Keymap(
         lateinit var keymapFile: NativeStorage
     }
 
-    //Can't do reflection of members of class because of native development
+    //Note: Can't do reflection of members of class because of native development
 
+    /**
+     * Load keymap from local storage to retrieve previous configuration saved.
+     */
     fun loadKeyMap(){
         keymapFile.getOrNull(Keymap::up.name)?.let { up = it.toCharArray()[0] }
         keymapFile.getOrNull(Keymap::down.name)?.let { down = it.toCharArray()[0] }
@@ -23,29 +34,49 @@ class Keymap(
         keymapFile.getOrNull(Keymap::powers.name)?.let { powers = it.toCharArray()[0] }
     }
 
-    fun saveUp(it: Char) {
-        up = it
+    /**
+     * Save up key in local storage to persist configuration
+     * @param char key to save
+     */
+    fun saveUp(char: Char) {
+        up = char
         println(up.toString())
         keymapFile[Keymap::up.name] = up.toString()
     }
 
-    fun saveDown(it: Char) {
-        down = it
+    /**
+     * Save down key in local storage to persist configuration
+     * @param char key to save
+     */
+    fun saveDown(char: Char) {
+        down = char
         keymapFile[Keymap::down.name] = down.toString()
     }
 
-    fun saveRight(it: Char) {
-        right = it
+    /**
+     * Save right key in local storage to persist configuration
+     * @param char key to save
+     */
+    fun saveRight(char: Char) {
+        right = char
         keymapFile[Keymap::right.name] = right.toString()
     }
 
-    fun saveLeft(it: Char) {
-        left = it
+    /**
+     * Save left key in local storage to persist configuration
+     * @param char key to save
+     */
+    fun saveLeft(char: Char) {
+        left = char
         keymapFile[Keymap::left.name] = left.toString()
     }
 
-    fun savePowers(it: Char) {
-        powers = it
+    /**
+     * Save powers key in local storage to persist configuration
+     * @param char key to save
+     */
+    fun savePowers(char: Char) {
+        powers = char
         keymapFile[Keymap::powers.name] = powers.toString()
     }
 }

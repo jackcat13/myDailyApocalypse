@@ -2,6 +2,9 @@ package skills.passive
 
 import config.ExcludeFromJacocoGeneratedReport
 
+/**
+ * Lightning strike passive skill class. Object that give flat damage.
+ */
 class LightningStrike(override val name: String = "Lightning strike"): PassiveSkill(name) {
 
     override fun additionalDamageFlat(): Double = 15.0

@@ -2,19 +2,14 @@ package extension
 
 import World
 import com.soywiz.korge.tests.ViewsForTesting
-import com.soywiz.korge.view.addUpdater
 import com.soywiz.korge.view.position
 import com.soywiz.korim.atlas.readAtlas
-import com.soywiz.korio.async.launchImmediately
 import com.soywiz.korio.file.std.resourcesVfs
-import config.GameConfig
 import config.GameConfig.chunksSize
-import entities.Player
 import entities.Soldier
 import extensions.generateWorld
 import extensions.worldLoadingCheck
 import scenes.backgroundTexture
-import utils.EntitiesBuilder.soldier
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

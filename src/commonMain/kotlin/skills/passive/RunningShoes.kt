@@ -2,6 +2,9 @@ package skills.passive
 
 import config.ExcludeFromJacocoGeneratedReport
 
+/**
+ * Running shoes passive skill class. Object that give flat speed.
+ */
 class RunningShoes(): PassiveSkill("Running shoes") {
 
     @ExcludeFromJacocoGeneratedReport("This passive has no impact on flat damage.")

@@ -1,6 +1,10 @@
 import com.soywiz.korge.view.Container
 import config.GameConfig.chunksSize
 
+/**
+ * World class to create a world object to be used in the game
+ * @property chunks List of 9 chunks of the world. These chunks can be regenerated depending on player position.
+ */
 class World(
         val chunks: List<Chunk> = listOf(
                 Chunk(-2*chunksSize to -2*chunksSize, -chunksSize to -chunksSize),//1
@@ -15,6 +19,9 @@ class World(
         )
 )
 
+/**
+ * Chunk class used by the world.
+ */
 class Chunk(val beginPosition: Pair<Double, Double> = 0.0 to 0.0,
             val endPosition: Pair<Double, Double> = chunksSize to chunksSize,
             var chunkContainer: Container? = null

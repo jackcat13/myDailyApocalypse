@@ -17,6 +17,10 @@ const val POWER_INPUT = "powerInput"
 const val POWER_INPUT_TEXT = "Power : "
 private const val TEXT_INPUT_X = 70.0
 
+/**
+ * Handles keymap graphical interface and its events.
+ * It allows to change keys configuration for actions of the game.
+ */
 fun Container.keymapTextInputs() {
     container { saveUpKeyInput() }.position(FIRST_COLUMNS_X, 10.0).name(UP_INPUT)
     container { saveDownKeyInput() }.position(FIRST_COLUMNS_X, 40.0).name(DOWN_INPUT)

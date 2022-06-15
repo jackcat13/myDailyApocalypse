@@ -6,6 +6,19 @@ import com.soywiz.korim.atlas.Atlas
 import com.soywiz.korim.color.Colors
 import entities.SpritesAnimationConstants.STAND
 
+/**
+ * Entity class to centralize common behavior of all entities in the game.
+ * @property maxHp Maximum health
+ * @property hp Current health
+ * @property range Range
+ * @property spriteAtlas Entity sprite atlas
+ * @property sprite Entity sprite
+ * @property speed Speed
+ * @property width Width
+ * @property height Height
+ * @property attackSpeed AttackSpeed
+ * @property damage Damage
+ */
 abstract class Entity (
     open var maxHp: Double = 100.0,
     open var hp: Double = maxHp,
@@ -23,10 +36,20 @@ abstract class Entity (
         const val RANGE_CIRCLE_NAME = "rangeCircle"
     }
 
+    /**
+     * Initializes entity sprites
+     */
     fun initDraw(container: Container, x: Double, y: Double, name: String = ENTITY_SPRITE_NAME) {
         draw(container, name, x, y)
     }
 
+    /**
+     * Draw entity sprites
+     * @param container The container in which the sprites are created
+     * @param name Name of the container of sprites
+     * @param x X position of sprites
+     * @param y Y position of sprites
+     */
     fun draw(container: Container, name: String = ENTITY_SPRITE_NAME, x: Double, y: Double, animationType: String = STAND) {
         sprite = container.container {
             val entitySprite = sprite(spriteAtlas.getSpriteAnimation(prefix = animationType)).name(name)
