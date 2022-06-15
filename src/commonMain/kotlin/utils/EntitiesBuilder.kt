@@ -22,7 +22,8 @@ object EntitiesBuilder{
     internal suspend fun generateImp(container: Container, currentPlayer: Player): Imp {
         val imp = imp()
         imp.initDraw(container, currentPlayer.sprite!!.x+ generateRand(-600, 600), currentPlayer.sprite!!.y+ generateRand(-600, 600))
-        container.addUpdaterWithPause { imp.mayFollowPlayer(currentPlayer.sprite!!) }
+        container.addUpdaterWithPause { imp.mayFollowPlayer(currentPlayer) }
+        imp.mayHitPlayer(container, currentPlayer)
         return imp
     }
 

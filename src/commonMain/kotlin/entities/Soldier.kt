@@ -67,7 +67,7 @@ class Soldier (
         enemies.forEach {
             val enemySprite = it.sprite[ENTITY_SPRITE_NAME].first
             if (collidesWith(enemySprite)) {
-                hitAnimation(enemySprite)
+                enemySprite.hitAnimation()
                 if (it.hitBy(this@Soldier)) {
                     enemiesToKill.add(it)
                 }
@@ -79,14 +79,4 @@ class Soldier (
             enemies.remove(it)
         }
     }
-
-    private fun hitAnimation(enemySprite: View) {
-        runBlockingNoSuspensions {
-            enemySprite.launchAnimate {
-                enemySprite.alpha(0.5, 0.1.seconds)
-                enemySprite.alpha(1.0)
-            }
-        }
-    }
-
 }

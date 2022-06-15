@@ -1,8 +1,11 @@
 package entities
 
+import com.soywiz.klock.timesPerSecond
 import com.soywiz.korev.Key
 import com.soywiz.korge.view.Container
+import com.soywiz.korge.view.collidesWith
 import com.soywiz.korim.atlas.Atlas
+import extensions.addFixedUpdaterWithPause
 import utils.AnimationTitle
 
 /**
@@ -39,20 +42,35 @@ abstract class Enemy(
 
     /**
      * May follow the player if he's too far away from the enemy
-     * @param playerSprite The player to follow
+     * @param container The container in which the player is followed
+     * @param player The player to follow
      */
-    fun mayFollowPlayer(playerSprite: Container) {
-        sprite?.let {
+    fun mayFollowPlayer(player: Player) {
+        sprite?.let { player?.sprite?.let { playerSprite ->
             if (it.x < playerSprite.x) it.x += speed
             if (it.x > playerSprite.x) it.x -= speed
             if (it.y < playerSprite.y) it.y += speed
             if (it.y > playerSprite.y) it.y -= speed
+        } }
+    }
+
+    /**
+     * May hit the player in case of collision
+     * @param container The container where entities are created
+     * @param player The player to hit
+     */
+    fun mayHitPlayer(container: Container, player: Player){
+        container.addFixedUpdaterWithPause(attackSpeed.timesPerSecond) {
+            if (sprite!!.collidesWith(player.sprite!!.getChildByName(ENTITY_SPRITE_NAME)!!)) {
+                player.hitBy(this)
+            }
         }
     }
 
     /**
      * Process hit received by the player.
      * @param player The players that hits the enemy
+     * @return boolean to indicate if the current enemy is dead (true) or not (false).
      */
     fun hitBy(player: Player): Boolean{
         val processedDamage = player.processDamage()
