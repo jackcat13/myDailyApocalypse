@@ -26,7 +26,7 @@ abstract class Entity (
     open var hp: Double = maxHp,
     open var range: Double = 40.0,
     open var spriteAtlas: Atlas,
-    open var sprite: Container? = null,
+    open var sprite: Sprite? = null,
     open var speed: Double = 1.0,
     open var width: Int = 200,
     open var height: Int = 40,
@@ -53,14 +53,10 @@ abstract class Entity (
      * @param y Y position of sprites
      */
     fun draw(container: Container, name: String = ENTITY_SPRITE_NAME, x: Double, y: Double, animationType: String = STAND) {
-        sprite = container.container {
-            val entitySprite = sprite(spriteAtlas.getSpriteAnimation(prefix = animationType)).name(name)
-            entitySprite.playAnimationLooped(spriteDisplayTime = 0.2.seconds)
-            (this@Entity as? Player)?.let {
-                circle(range, Colors["#ffffff00"], Colors["#DF52527f"], 2.0).name(RANGE_CIRCLE_NAME)
-                    .centerOn(entitySprite)
-            }
-        }.position(x, y)
+        sprite = container.sprite(spriteAtlas.getSpriteAnimation(prefix = animationType)).name(name).let {
+            it.playAnimationLooped(spriteDisplayTime = 0.2.seconds)
+            it.position(x, y)
+        }
     }
 
     /**

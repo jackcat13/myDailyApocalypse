@@ -1,8 +1,10 @@
 package entities
 
+import com.soywiz.kds.FastArrayList
 import com.soywiz.korge.animate.animator
 import com.soywiz.korge.view.Circle
 import com.soywiz.korge.view.Container
+import com.soywiz.korge.view.Sprite
 import com.soywiz.korge.view.position
 import com.soywiz.korim.atlas.Atlas
 import com.soywiz.korio.async.runBlockingNoSuspensions
@@ -38,7 +40,7 @@ abstract class Player(
         override var hp: Double = maxHp,
         override var range: Double = 100.0,
         override var spriteAtlas: Atlas,
-        override var sprite: Container? = null,
+        override var sprite: Sprite? = null,
         override var speed: Double = 3.0,
         override var width: Int = 82,
         override var height: Int = 82,
@@ -133,12 +135,11 @@ abstract class Player(
     fun processRange(): Double{
         var processedRange = range
         passiveSkills.forEach { processedRange += it.additionalRange() }
-        (sprite!!.getChildByName(RANGE_CIRCLE_NAME) as Circle).radius = processedRange
         return processedRange
     }
 
     /**
      * Process player main attack. To override for each playable character.
      */
-    abstract fun processMainAttack(container: Container, enemies: MutableList<Enemy>)
+    abstract fun processMainAttack(container: Container, enemies: FastArrayList<Enemy>)
 }

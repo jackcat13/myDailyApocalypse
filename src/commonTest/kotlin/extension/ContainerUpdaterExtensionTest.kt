@@ -2,6 +2,8 @@ package extension
 
 import KeysUtilsTest.charDown
 import KeysUtilsTest.charUp
+import com.soywiz.kds.FastArrayList
+import com.soywiz.kds.fastArrayListOf
 import com.soywiz.klock.seconds
 import com.soywiz.korge.animate.animator
 import com.soywiz.korge.tests.ViewsForTesting
@@ -23,7 +25,7 @@ class ContainerUpdaterExtensionTest(): ViewsForTesting() {
 
     @Test
     fun `player should kill imp when using main attack updater`() = viewsTest {
-        val enemies: MutableList<Enemy> = mutableListOf()
+        val enemies: FastArrayList<Enemy> = fastArrayListOf()
         val currentPlayer: Player = EntitiesBuilder.soldier().apply { damage = 100.0 }
         currentPlayer.initDraw(this, 0.0, 0.0)
         enemies.add(EntitiesBuilder.generateImp(this, currentPlayer).apply { position(30.0, 0.0) })
