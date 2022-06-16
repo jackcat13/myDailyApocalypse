@@ -35,6 +35,7 @@ internal fun Container.movesUpdater(currentPlayer: Player, camera: CameraContain
     addUpdaterWithPause {
         checkMoves(currentPlayer)
         currentPlayer.mayMove()
+        currentPlayer.checkAnimation()
         camera.follow(currentPlayer.sprite!!, true)
     }
 }
