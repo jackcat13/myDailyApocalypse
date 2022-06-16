@@ -3,6 +3,7 @@ package entities
 import com.soywiz.klock.timesPerSecond
 import com.soywiz.korev.Key
 import com.soywiz.korge.view.Container
+import com.soywiz.korge.view.Sprite
 import com.soywiz.korge.view.collidesWith
 import com.soywiz.korim.atlas.Atlas
 import extensions.addFixedUpdaterWithPause
@@ -25,19 +26,19 @@ import utils.AnimationTitle
  * @property animations Enemy animations
  */
 abstract class Enemy(
-    override var maxHp: Double = 100.0,
-    override var hp: Double = maxHp,
-    override var range: Double = 100.0,
-    override var spriteAtlas: Atlas,
-    override var sprite: Container? = null,
-    override var speed: Double = 3.0,
-    override var width: Int = 82,
-    override var height: Int = 82,
-    override var attackSpeed: Double = 1.0,
-    override var damage: Double = 15.0,
-    open var moveXDirection: Key? = null,
-    open var moveYDirection: Key? = null,
-    open var animations: Map<AnimationTitle, Atlas> = mapOf()
+        override var maxHp: Double = 100.0,
+        override var hp: Double = maxHp,
+        override var range: Double = 100.0,
+        override var spriteAtlas: Atlas,
+        override var sprite: Sprite? = null,
+        override var speed: Double = 3.0,
+        override var width: Int = 82,
+        override var height: Int = 82,
+        override var attackSpeed: Double = 1.0,
+        override var damage: Double = 15.0,
+        open var moveXDirection: Key? = null,
+        open var moveYDirection: Key? = null,
+        open var animations: Map<AnimationTitle, Atlas> = mapOf()
 ): Entity(maxHp, hp, range, spriteAtlas, sprite, speed, width, height, attackSpeed, damage) {
 
     /**
@@ -61,7 +62,7 @@ abstract class Enemy(
      */
     fun mayHitPlayer(container: Container, player: Player){
         container.addFixedUpdaterWithPause(attackSpeed.timesPerSecond) {
-            if (sprite!!.collidesWith(player.sprite!!.getChildByName(ENTITY_SPRITE_NAME)!!)) {
+            if (sprite!!.collidesWith(player.sprite!!)) {
                 player.hitBy(this)
             }
         }

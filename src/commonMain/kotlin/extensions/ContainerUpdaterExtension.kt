@@ -1,5 +1,6 @@
 package extensions
 
+import com.soywiz.kds.FastArrayList
 import com.soywiz.klock.timesPerSecond
 import com.soywiz.korge.input.keys
 import com.soywiz.korge.view.Container
@@ -16,7 +17,7 @@ import entities.Player
  * @param currentPlayer The player that needs to attack
  * @param enemies The enemies that may be hit by the player
  */
-internal fun Container.attacksUpdater(currentPlayer: Player, enemies: MutableList<Enemy>) {
+internal fun Container.attacksUpdater(currentPlayer: Player, enemies: FastArrayList<Enemy>) {
     addFixedUpdaterWithPause(currentPlayer.attackSpeed.timesPerSecond) {
         container {
             currentPlayer.processMainAttack(this, enemies)
@@ -34,6 +35,6 @@ internal fun Container.movesUpdater(currentPlayer: Player, camera: CameraContain
     addUpdaterWithPause {
         checkMoves(currentPlayer)
         currentPlayer.mayMove()
-        camera.follow(currentPlayer.sprite, true)
+        camera.follow(currentPlayer.sprite!!, true)
     }
 }

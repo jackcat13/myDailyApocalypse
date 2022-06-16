@@ -1,6 +1,8 @@
 package scenes
 
 import World
+import com.soywiz.kds.FastArrayList
+import com.soywiz.kds.fastArrayListOf
 import com.soywiz.korge.input.onClick
 import com.soywiz.korge.resources.resourceBitmap
 import com.soywiz.korge.scene.Scene
@@ -35,7 +37,7 @@ val ResourcesContainer.backgroundTexture by resourceBitmap("grass.png")
 @ExcludeFromJacocoGeneratedReport("Won't test scenes, focus is on logic testing")
 class MainLevelScene(): Scene() {
     var world = World()
-    val enemies: MutableList<Enemy> = mutableListOf()
+    val enemies: FastArrayList<Enemy> = fastArrayListOf()
     override suspend fun Container.sceneInit() {
         world = World()
         val currentPlayer: Player = soldier()

@@ -1,5 +1,6 @@
 package entities
 
+import com.soywiz.kds.FastArrayList
 import com.soywiz.klock.seconds
 import com.soywiz.korge.animate.launchAnimate
 import com.soywiz.korge.view.*
@@ -34,7 +35,7 @@ class Soldier (
         override var hp: Double = maxHp,
         override var range: Double = 205.0,
         override var spriteAtlas: Atlas,
-        override var sprite: Container? = null,
+        override var sprite: Sprite? = null,
         override var speed: Double = 3.0,
         override var width: Int = 20,
         override var height: Int = 40,
@@ -51,10 +52,9 @@ class Soldier (
     /**
      * Handles the soldier main attack
      */
-    override fun processMainAttack(container: Container, enemies: MutableList<Enemy>) {
-        val playerSprite = sprite[ENTITY_SPRITE_NAME].first as Sprite
+    override fun processMainAttack(container: Container, enemies: FastArrayList<Enemy>) {
         val slash = container.sprite(animations[SLASH]!!.getSpriteAnimation(prefix = "slash"))
-                .position(sprite!!.x + playerSprite.width/2, sprite!!.y)
+                .position(sprite!!.x + sprite!!.width/2, sprite!!.y)
         slash.scaledWidth = range
         slash.playAnimation()
         slash.onAnimationCompleted.once {
@@ -62,10 +62,10 @@ class Soldier (
         }
     }
 
-    private fun Sprite.maySlashEnnemies(enemies: MutableList<Enemy>) {
+    private fun Sprite.maySlashEnnemies(enemies: FastArrayList<Enemy>) {
         val enemiesToKill = mutableListOf<Enemy>()
         enemies.forEach {
-            val enemySprite = it.sprite[ENTITY_SPRITE_NAME].first
+            val enemySprite = it.sprite!!
             if (collidesWith(enemySprite)) {
                 enemySprite.hitAnimation()
                 if (it.hitBy(this@Soldier)) {
