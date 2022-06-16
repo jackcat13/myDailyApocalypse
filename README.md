@@ -4,3 +4,9 @@
 
 You can find the explanations at GitHub: <https://github.com/korlibs/korge-hello-world#readme>
 
+## Third party Assets used
+
+- https://oco.itch.io/medieval-fantasy-character-pack
+  - made by [Oco](https://itch.io/profile/oco)
+- https://sanctumpixel.itch.io/imp-axe-demon-pixel-art-character
+  - made by [Sanctum Pixel](https://sanctumpixel.itch.io/)

@@ -43,11 +43,12 @@ class Soldier (
         override var damage: Double = 60.0,
         override var playerStatus: PlayerStatus = PlayerStatus.STAY,
         override var moveXDirection: Char? = null,
+        override var previousXDirection: Char? = null,
         override var moveYDirection: Char? = null,
         override var animations: Map<AnimationTitle, Atlas>,
         override var passiveSkills: MutableList<PassiveSkill> = mutableListOf(),
         override var activeSkills: MutableList<ActiveSkill> = mutableListOf(),
-): Player(maxHp, hp, range, spriteAtlas, sprite, speed, width, height, attackSpeed, damage, playerStatus, moveXDirection, moveYDirection, animations, passiveSkills) {
+): Player(maxHp, hp, range, spriteAtlas, sprite, speed, width, height, attackSpeed, damage, playerStatus, moveXDirection, previousXDirection, moveYDirection, animations, passiveSkills) {
 
     /**
      * Handles the soldier main attack

@@ -58,7 +58,8 @@ class MainLevelScene(): Scene() {
     private fun Container.checkPlayerDeath(currentPlayer: Player) {
         addUpdater {
             if (currentPlayer.playerStatus == PlayerStatus.DEAD) {
-                text(DEATH_MESSAGE)
+                GameStatus.pause = true
+                currentPlayer.launchDeathAnimation()
                 uiButton(EXIT_BUTTON_TEXT).onClick { launchImmediately {
                     sceneContainer.changeTo<MainScene>()
                     world = World()

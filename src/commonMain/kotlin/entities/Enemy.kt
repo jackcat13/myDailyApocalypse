@@ -5,7 +5,10 @@ import com.soywiz.korev.Key
 import com.soywiz.korge.view.Container
 import com.soywiz.korge.view.Sprite
 import com.soywiz.korge.view.collidesWith
+import com.soywiz.korge.view.getSpriteAnimation
 import com.soywiz.korim.atlas.Atlas
+import com.soywiz.korim.bitmap.flippedX
+import config.GameConfig
 import extensions.addFixedUpdaterWithPause
 import utils.AnimationTitle
 
@@ -41,6 +44,11 @@ abstract class Enemy(
         open var animations: Map<AnimationTitle, Atlas> = mapOf()
 ): Entity(maxHp, hp, range, spriteAtlas, sprite, speed, width, height, attackSpeed, damage) {
 
+    override fun initDraw(container: Container, x: Double, y: Double, name: String) {
+        super.initDraw(container, x, y, name)
+        sprite!!.setSizeScaled(36.0, 62.0)
+    }
+
     /**
      * May follow the player if he's too far away from the enemy
      * @param container The container in which the player is followed
@@ -48,11 +56,26 @@ abstract class Enemy(
      */
     fun mayFollowPlayer(player: Player) {
         sprite?.let { player?.sprite?.let { playerSprite ->
-            if (it.x < playerSprite.x) it.x += speed
-            if (it.x > playerSprite.x) it.x -= speed
+            if (it.x < playerSprite.x) {
+                it.x += speed
+                playRightRunAnimation()
+            }
+            if (it.x > playerSprite.x) {
+                it.x -= speed
+                playLeftRunAnimation()
+            }
             if (it.y < playerSprite.y) it.y += speed
             if (it.y > playerSprite.y) it.y -= speed
         } }
+    }
+
+    private fun playRightRunAnimation() {
+        sprite!!.playAnimationLooped(spriteAtlas.getSpriteAnimation(SpritesAnimationConstants.RUN))
+    }
+
+    private fun playLeftRunAnimation() {
+        sprite!!.playAnimationLooped(spriteAtlas.getSpriteAnimation(SpritesAnimationConstants.RUN))
+        sprite!!.bitmap = sprite!!.bitmap.flippedX()
     }
 
     /**
