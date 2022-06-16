@@ -4,7 +4,6 @@ import com.soywiz.klock.seconds
 import com.soywiz.korge.animate.launchAnimate
 import com.soywiz.korge.view.*
 import com.soywiz.korim.atlas.Atlas
-import com.soywiz.korim.color.Colors
 import com.soywiz.korio.async.runBlockingNoSuspensions
 import entities.SpritesAnimationConstants.STAND
 
@@ -41,7 +40,7 @@ abstract class Entity (
     /**
      * Initializes entity sprites
      */
-    fun initDraw(container: Container, x: Double, y: Double, name: String = ENTITY_SPRITE_NAME) {
+    open fun initDraw(container: Container, x: Double, y: Double, name: String = ENTITY_SPRITE_NAME) {
         draw(container, name, x, y)
     }
 
@@ -54,7 +53,7 @@ abstract class Entity (
      */
     fun draw(container: Container, name: String = ENTITY_SPRITE_NAME, x: Double, y: Double, animationType: String = STAND) {
         sprite = container.sprite(spriteAtlas.getSpriteAnimation(prefix = animationType)).name(name).let {
-            it.playAnimationLooped(spriteDisplayTime = 0.2.seconds)
+            it.playAnimationLooped()
             it.position(x, y)
         }
     }
@@ -68,6 +67,16 @@ abstract class Entity (
                 alpha(0.5, 0.1.seconds)
                 alpha(1.0)
             }
+        }
+    }
+
+    /**
+     * Responsible of death animation.
+     */
+    fun launchDeathAnimation(){
+        sprite!!.playAnimation(1, spriteAtlas.getSpriteAnimation(SpritesAnimationConstants.DEATH), spriteDisplayTime = 0.2.seconds)
+        sprite!!.onAnimationCompleted{
+            sprite!!.bitmap = spriteAtlas.getSpriteAnimation(SpritesAnimationConstants.DEATH).last()
         }
     }
 }

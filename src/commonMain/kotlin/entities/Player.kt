@@ -2,15 +2,14 @@ package entities
 
 import com.soywiz.kds.FastArrayList
 import com.soywiz.korge.animate.animator
-import com.soywiz.korge.view.Circle
-import com.soywiz.korge.view.Container
-import com.soywiz.korge.view.Sprite
-import com.soywiz.korge.view.position
+import com.soywiz.korge.view.*
 import com.soywiz.korim.atlas.Atlas
+import com.soywiz.korim.bitmap.flippedX
 import com.soywiz.korio.async.runBlockingNoSuspensions
 import config.GameConfig
 import config.GameStatus
 import entities.PlayerStatus.*
+import entities.SpritesAnimationConstants.STAND
 import exceptions.UninitializedSpriteException
 import skills.active.ActiveSkill
 import skills.passive.PassiveSkill
@@ -48,11 +47,17 @@ abstract class Player(
         override var damage: Double = 50.0,
         open var playerStatus: PlayerStatus = STAY,
         open var moveXDirection: Char? = null,
+        open var previousXDirection: Char? = null,
         open var moveYDirection: Char? = null,
         open var animations: Map<AnimationTitle, Atlas> = mapOf(),
         open var passiveSkills: MutableList<PassiveSkill> = mutableListOf(),
         open var activeSkills: MutableList<ActiveSkill> = mutableListOf(),
 ): Entity(maxHp, hp, range, spriteAtlas, sprite, speed, width, height, attackSpeed, damage) {
+
+    override fun initDraw(container: Container, x: Double, y: Double, name: String) {
+        super.initDraw(container, x, y, name)
+        sprite!!.setSizeScaled(48.0, 62.0)
+    }
 
     /**
      * Handles player possible movements.
@@ -136,6 +141,29 @@ abstract class Player(
         var processedRange = range
         passiveSkills.forEach { processedRange += it.additionalRange() }
         return processedRange
+    }
+
+    /**
+     * Verifies what animation to play depending on player status
+     */
+    fun checkAnimation() {
+        if (playerStatus == RUN || playerStatus == RUN_FULL_SPEED){
+            if (moveXDirection == GameConfig.keyMap.right) playRightRunAnimation()
+            else if (moveXDirection == GameConfig.keyMap.left) playLeftRunAnimation()
+            else if (previousXDirection == GameConfig.keyMap.left) playLeftRunAnimation()
+            else if (moveYDirection != null) playRightRunAnimation()
+        } else if (playerStatus == STAY) sprite!!.playAnimationLooped(spriteAtlas.getSpriteAnimation(STAND))
+    }
+
+    private fun playRightRunAnimation() {
+        sprite!!.playAnimationLooped(spriteAtlas.getSpriteAnimation(SpritesAnimationConstants.RUN))
+        previousXDirection = GameConfig.keyMap.right
+    }
+
+    private fun playLeftRunAnimation() {
+        sprite!!.playAnimationLooped(spriteAtlas.getSpriteAnimation(SpritesAnimationConstants.RUN))
+        sprite!!.bitmap = sprite!!.bitmap.flippedX()
+        previousXDirection = GameConfig.keyMap.left
     }
 
     /**
