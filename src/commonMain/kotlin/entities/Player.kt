@@ -78,23 +78,6 @@ abstract class Player(
         } ?: throw UninitializedSpriteException("Player sprite has not been initialized")
     }
 
-    /**
-     * Process hit received by an enemy.
-     * @param player The players that hits the enemy
-     * @return boolean to indicate if the current enemy is dead (true) or not (false).
-     */
-    fun hitBy(enemy: Enemy): Boolean{
-        hp -= enemy.damage
-        println("HIT: ${enemy.damage}. HP: $hp")
-        sprite!!.hitAnimation()
-        if (hp <= 0) {
-            playerStatus = DEAD
-            GameStatus.pause = true
-            return true
-        }
-        return false
-    }
-
     private fun processMoveCoordinates(): Pair<Double, Double>? {
         var coordinates: Pair<Double, Double>? = null
         if (playerStatus in setOf(RUN, RUN_FULL_SPEED)){
@@ -111,6 +94,22 @@ abstract class Player(
             }
         }
         return coordinates
+    }
+
+    /**
+     * Process hit received by an enemy.
+     * @param player The players that hits the enemy
+     * @return boolean to indicate if the current enemy is dead (true) or not (false).
+     */
+    fun hitBy(enemy: Enemy): Boolean{
+        hp -= enemy.damage
+        println("HIT: ${enemy.damage}. HP: $hp")
+        sprite!!.hitAnimation()
+        if (hp <= 0) {
+            playerStatus = DEAD
+            return true
+        }
+        return false
     }
 
     /**

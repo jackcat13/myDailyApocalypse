@@ -23,11 +23,13 @@ class ContainerKeymapExtensionTest: ViewsForTesting() {
         assertEquals('z', GameConfig.keyMap.up)
         keymapTextInputs()
         val upInput = (getChildByName(UP_INPUT)!! as Container).children.first { it::class == UITextInput::class } as UITextInput
-        upInput.focus()
-        assertEquals("", upInput.text)
-        launchImmediately { keyType('a') }
-        assertEquals("a", upInput.text)
-        assertEquals('a', GameConfig.keyMap.up)
+        launchImmediately { upInput.focus() }.invokeOnCompletion {
+            assertEquals("", upInput.text)
+            launchImmediately { keyType('a') }.invokeOnCompletion {
+                assertEquals("a", upInput.text)
+                assertEquals('a', GameConfig.keyMap.up)
+            }
+        }
     }
 
     @Test
@@ -35,11 +37,13 @@ class ContainerKeymapExtensionTest: ViewsForTesting() {
         assertEquals('s', GameConfig.keyMap.down)
         keymapTextInputs()
         val downInput = (getChildByName(DOWN_INPUT)!! as Container).children.first { it::class == UITextInput::class } as UITextInput
-        downInput.focus()
-        assertEquals("", downInput.text)
-        launchImmediately { keyType('w') }
-        assertEquals("w", downInput.text)
-        assertEquals('w', GameConfig.keyMap.down)
+        launchImmediately { downInput.focus() }.invokeOnCompletion {
+            assertEquals("", downInput.text)
+            launchImmediately { keyType('w') }.invokeOnCompletion {
+                assertEquals("w", downInput.text)
+                assertEquals('w', GameConfig.keyMap.down)
+            }
+        }
     }
 
     @Test
@@ -47,11 +51,13 @@ class ContainerKeymapExtensionTest: ViewsForTesting() {
         assertEquals('q', GameConfig.keyMap.left)
         keymapTextInputs()
         val leftInput = (getChildByName(LEFT_INPUT)!! as Container).children.first { it::class == UITextInput::class } as UITextInput
-        leftInput.focus()
-        assertEquals("", leftInput.text)
-        launchImmediately { keyType('t') }
-        assertEquals("t", leftInput.text)
-        assertEquals('t', GameConfig.keyMap.left)
+        launchImmediately { leftInput.focus() }.invokeOnCompletion {
+            assertEquals("", leftInput.text)
+            launchImmediately { keyType('t') }.invokeOnCompletion {
+                assertEquals("t", leftInput.text)
+                assertEquals('t', GameConfig.keyMap.left)
+            }
+        }
     }
 
     @Test
@@ -59,11 +65,13 @@ class ContainerKeymapExtensionTest: ViewsForTesting() {
         assertEquals('d', GameConfig.keyMap.right)
         keymapTextInputs()
         val rightInput = (getChildByName(RIGHT_INPUT)!! as Container).children.first { it::class == UITextInput::class } as UITextInput
-        rightInput.focus()
-        assertEquals("", rightInput.text)
-        launchImmediately { keyType('g') }
-        assertEquals("g", rightInput.text)
-        assertEquals('g', GameConfig.keyMap.right)
+        launchImmediately { rightInput.focus() }.invokeOnCompletion {
+            assertEquals("", rightInput.text)
+            launchImmediately { keyType('g') }.invokeOnCompletion {
+                assertEquals("g", rightInput.text)
+                assertEquals('g', GameConfig.keyMap.right)
+            }
+        }
     }
 
     @Test
@@ -71,10 +79,12 @@ class ContainerKeymapExtensionTest: ViewsForTesting() {
         assertEquals('p', GameConfig.keyMap.powers)
         keymapTextInputs()
         val powerInput = (getChildByName(POWER_INPUT)!! as Container).children.first { it::class == UITextInput::class } as UITextInput
-        powerInput.focus()
-        assertEquals("", powerInput.text)
-        launchImmediately { keyType('b') }
-        assertEquals("b", powerInput.text)
-        assertEquals('b', GameConfig.keyMap.powers)
+        launchImmediately { powerInput.focus() }.invokeOnCompletion {
+            assertEquals("", powerInput.text)
+            launchImmediately { keyType('b') }.invokeOnCompletion {
+                assertEquals("b", powerInput.text)
+                assertEquals('b', GameConfig.keyMap.powers)
+            }
+        }
     }
 }

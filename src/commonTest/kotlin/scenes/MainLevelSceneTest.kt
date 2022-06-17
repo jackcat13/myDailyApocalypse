@@ -1,21 +1,15 @@
 package scenes
 
-import com.soywiz.klock.*
-import com.soywiz.korge.animate.animator
-import com.soywiz.korge.input.*
-import com.soywiz.korge.tests.*
-import com.soywiz.korge.tween.*
-import com.soywiz.korge.view.*
-import com.soywiz.korim.color.*
-import com.soywiz.korio.async.launchImmediately
-import com.soywiz.korma.geom.*
-import config.GameConfig
-import entities.Enemy
-import entities.Player
-import extensions.attacksUpdater
-import utils.EntitiesBuilder.generateImp
-import utils.EntitiesBuilder.soldier
-import kotlin.test.*
+import com.soywiz.klock.seconds
+import com.soywiz.korge.input.onClick
+import com.soywiz.korge.tests.ViewsForTesting
+import com.soywiz.korge.tween.get
+import com.soywiz.korge.tween.tween
+import com.soywiz.korge.view.solidRect
+import com.soywiz.korim.color.Colors
+import com.soywiz.korma.geom.Rectangle
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class MyTest : ViewsForTesting() {
     @Test

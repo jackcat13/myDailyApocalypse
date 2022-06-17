@@ -8,7 +8,6 @@ import com.soywiz.korge.view.collidesWith
 import com.soywiz.korge.view.getSpriteAnimation
 import com.soywiz.korim.atlas.Atlas
 import com.soywiz.korim.bitmap.flippedX
-import config.GameConfig
 import extensions.addFixedUpdaterWithPause
 import utils.AnimationTitle
 
