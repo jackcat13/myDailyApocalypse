@@ -13,7 +13,7 @@ import kotlin.test.assertEquals
 
 class MyTest : ViewsForTesting() {
     @Test
-    fun `Init korge test should pass`() = viewsTest {
+    fun init_korge_test_should_pass() = viewsTest {
         val log = arrayListOf<String>()
         val rect = solidRect(100, 100, Colors.RED)
         rect.onClick {

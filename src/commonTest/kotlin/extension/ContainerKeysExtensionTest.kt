@@ -14,7 +14,7 @@ import kotlin.test.assertTrue
 class ContainerKeysExtensionTest: ViewsForTesting() {
 
     @Test
-    fun `check powers input should pause the game`() = viewsTest {
+    fun check_powers_input_should_pause_the_game() = viewsTest {
         container {
             checkPowersInput()
             charDownAndUp(gameWindow, GameConfig.keyMap.powers)

@@ -24,7 +24,7 @@ import kotlin.test.assertTrue
 class ContainerUpdaterExtensionTest(): ViewsForTesting() {
 
     @Test
-    fun `player should kill imp when using main attack updater`() = viewsTest {
+    fun player_should_kill_imp_when_using_main_attack_updater() = viewsTest {
         container {
             val enemies: FastArrayList<Enemy> = fastArrayListOf()
             val currentPlayer: Player = EntitiesBuilder.soldier().apply { damage = 100.0 }
@@ -42,7 +42,7 @@ class ContainerUpdaterExtensionTest(): ViewsForTesting() {
     }
 
     @Test
-    fun `player should move when using move keys`() = viewsTest {
+    fun player_should_move_when_using_move_keys() = viewsTest {
         container {
             val currentPlayer: Player = EntitiesBuilder.soldier()
             currentPlayer.initDraw(this, 0.0, 0.0)

@@ -11,7 +11,7 @@ import kotlin.test.assertEquals
 class ViewGlassesTest(): ViewsForTesting() {
 
     @Test
-    fun `new soldier should have range of 305 when using view glasses`() = viewsTest {
+    fun new_soldier_should_have_range_of_305_when_using_view_glasses() = viewsTest {
         container {
             val soldier = Soldier(
                 animations = mapOf(),

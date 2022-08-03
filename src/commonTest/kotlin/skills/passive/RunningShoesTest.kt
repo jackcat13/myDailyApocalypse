@@ -9,7 +9,7 @@ import kotlin.test.assertEquals
 class RunningShoesTest {
 
     @Test
-    fun `new soldier with running shoes should have a speed of 6`(){
+    fun new_soldier_with_running_shoes_should_have_a_speed_of_6(){
         val soldier = Soldier(animations = mapOf(), spriteAtlas = Atlas(listOf()), passiveSkills = mutableListOf(RunningShoes()))
         soldier.playerStatus = RUN_FULL_SPEED
         assertEquals(soldier.processSpeed(), 6.0)

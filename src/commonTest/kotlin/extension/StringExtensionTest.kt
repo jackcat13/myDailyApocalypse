@@ -7,13 +7,13 @@ import kotlin.test.assertEquals
 class StringExtensionTest {
 
     @Test
-    fun `asChar should transform string into a character`() {
+    fun asChar_should_transform_string_into_a_character() {
         assertEquals('a', "a".asChar())
         assertEquals('a', "aaaejiofezgyiu".asChar())
     }
 
     @Test
-    fun `asChar should return empty char when invalid string provided`() {
+    fun asChar_should_return_empty_char_when_invalid_string_provided() {
         assertEquals(' ', "".asChar())
     }
 }
