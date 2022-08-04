@@ -1,11 +1,8 @@
 package entities
 
 import com.soywiz.kds.FastArrayList
-import com.soywiz.klock.seconds
-import com.soywiz.korge.animate.launchAnimate
 import com.soywiz.korge.view.*
 import com.soywiz.korim.atlas.Atlas
-import com.soywiz.korio.async.runBlockingNoSuspensions
 import skills.active.ActiveSkill
 import skills.passive.PassiveSkill
 import utils.AnimationTitle

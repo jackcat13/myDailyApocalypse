@@ -2,12 +2,9 @@ package extensions
 
 import com.soywiz.kds.FastArrayList
 import com.soywiz.klock.timesPerSecond
-import com.soywiz.korge.input.keys
 import com.soywiz.korge.view.Container
-import com.soywiz.korge.view.addUpdater
 import com.soywiz.korge.view.camera.CameraContainer
 import com.soywiz.korge.view.container
-import config.GameStatus
 import entities.Enemy
 import entities.Player
 

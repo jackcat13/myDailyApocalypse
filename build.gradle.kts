@@ -42,4 +42,8 @@ korge {
 	group = "com.jackcat13.rogueLike"
 	id = "myDailyApocalypse"
 	targetAll()
+
+	authorName = "jackCat13"
+	authorEmail = "christophehenry11@gmail.com"
+	authorHref = "https://chris-henry.notion.site/chris-henry/My-portfolio-def539df86f9498ba50ae85669f659ef"
 }

@@ -5,6 +5,7 @@ import com.soywiz.korge.animate.launchAnimate
 import com.soywiz.korge.view.*
 import com.soywiz.korim.atlas.Atlas
 import com.soywiz.korio.async.runBlockingNoSuspensions
+import entities.SpritesAnimationConstants.DEATH
 import entities.SpritesAnimationConstants.STAND
 
 /**
@@ -34,7 +35,6 @@ abstract class Entity (
 ) {
     companion object{
         const val ENTITY_SPRITE_NAME = "Entity"
-        const val RANGE_CIRCLE_NAME = "rangeCircle"
     }
 
     /**
@@ -42,6 +42,7 @@ abstract class Entity (
      */
     open fun initDraw(container: Container, x: Double, y: Double, name: String = ENTITY_SPRITE_NAME) {
         draw(container, name, x, y)
+        container.parent!!.sendChildToFront(sprite!!)
     }
 
     /**
@@ -74,9 +75,6 @@ abstract class Entity (
      * Responsible of death animation.
      */
     fun launchDeathAnimation(){
-        sprite!!.playAnimation(1, spriteAtlas.getSpriteAnimation(SpritesAnimationConstants.DEATH), spriteDisplayTime = 0.2.seconds)
-        sprite!!.onAnimationCompleted{
-            sprite!!.bitmap = spriteAtlas.getSpriteAnimation(SpritesAnimationConstants.DEATH).last()
-        }
+        sprite!!.playAnimation(1, spriteAtlas.getSpriteAnimation(DEATH), spriteDisplayTime = 0.2.seconds)
     }
 }

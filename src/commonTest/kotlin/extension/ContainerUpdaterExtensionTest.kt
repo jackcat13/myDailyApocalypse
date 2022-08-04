@@ -25,16 +25,18 @@ class ContainerUpdaterExtensionTest(): ViewsForTesting() {
 
     @Test
     fun `player should kill imp when using main attack updater`() = viewsTest {
-        val enemies: FastArrayList<Enemy> = fastArrayListOf()
-        val currentPlayer: Player = EntitiesBuilder.soldier().apply { damage = 100.0 }
-        currentPlayer.initDraw(this, 0.0, 0.0)
-        enemies.add(EntitiesBuilder.generateImp(this, currentPlayer).apply { position(30.0, 0.0) })
-        assertEquals(1, enemies.size)
-        attacksUpdater(currentPlayer, enemies)
-        animator {
-            block {
-                wait(1.seconds) //wait for user attack
-                assertEquals(0, enemies.size)
+        container {
+            val enemies: FastArrayList<Enemy> = fastArrayListOf()
+            val currentPlayer: Player = EntitiesBuilder.soldier().apply { damage = 100.0 }
+            currentPlayer.initDraw(this, 0.0, 0.0)
+            enemies.add(EntitiesBuilder.generateImp(this, currentPlayer).apply { position(30.0, 0.0) })
+            assertEquals(1, enemies.size)
+            attacksUpdater(currentPlayer, enemies)
+            animator {
+                block {
+                    wait(1.seconds) //wait for user attack
+                    assertEquals(0, enemies.size)
+                }
             }
         }
     }
