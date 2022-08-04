@@ -10,7 +10,7 @@ import kotlin.test.assertEquals
 class GameConfigTest: ViewsForTesting() {
 
     @Test
-    fun `Changing key mapping should be stored properly`() = viewsTest {
+    fun changing_key_mapping_should_be_stored_properly() = viewsTest {
         Keymap.keymapFile = views.storage
         GameConfig.keyMap = Keymap()
         GameConfig.keyMap.saveUp('t')

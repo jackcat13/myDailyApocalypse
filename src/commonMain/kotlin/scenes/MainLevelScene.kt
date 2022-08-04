@@ -4,14 +4,11 @@ import World
 import com.soywiz.kds.FastArrayList
 import com.soywiz.kds.fastArrayListOf
 import com.soywiz.klock.timesPerSecond
-import com.soywiz.korge.input.onClick
-import com.soywiz.korge.input.onDown
 import com.soywiz.korge.scene.Scene
 import com.soywiz.korge.ui.uiButton
 import com.soywiz.korge.view.*
 import com.soywiz.korge.view.camera.cameraContainer
 import com.soywiz.korio.async.launchImmediately
-import com.soywiz.korio.async.runBlockingNoSuspensions
 import config.ExcludeFromJacocoGeneratedReport
 import config.GameConfig.chunksSize
 import config.GameStatus
@@ -36,7 +33,7 @@ const val EXIT_BUTTON = "ExitButton"
 class MainLevelScene(): Scene() {
     var world = World()
     val enemies: FastArrayList<Enemy> = fastArrayListOf()
-    override suspend fun Container.sceneInit() {
+    override suspend fun SContainer.sceneInit() {
         world = World()
         stage?.hitTestEnabled = false
         val currentPlayer: Player = soldier()

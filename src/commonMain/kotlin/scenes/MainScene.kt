@@ -4,7 +4,7 @@ import com.soywiz.korge.input.onClick
 import com.soywiz.korge.scene.Scene
 import com.soywiz.korge.service.storage.storage
 import com.soywiz.korge.ui.uiButton
-import com.soywiz.korge.view.Container
+import com.soywiz.korge.view.SContainer
 import com.soywiz.korge.view.position
 import com.soywiz.korio.async.launchImmediately
 import config.ExcludeFromJacocoGeneratedReport
@@ -23,7 +23,7 @@ class MainScene: Scene(){
 		const val CHANGE_KEYMAP_LABEL = "Change keys mapping"
 	}
 
-	override suspend fun Container.sceneInit() {
+	override suspend fun SContainer.sceneInit() {
 		initKeymap()
 		val image = uiButton(START_GAME_LABEL) {
 			position(MainModule.virtualWidth/2, 20)

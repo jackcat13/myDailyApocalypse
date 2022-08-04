@@ -17,14 +17,14 @@ import kotlin.test.assertTrue
 class EnemyTest: ViewsForTesting() {
 
     @Test
-    fun `imp hit by player should take damage`() = viewsTest{
+    fun imp_hit_by_player_should_take_damage() = viewsTest{
         val imp = imp()
         imp.hitBy(soldier())
         assertEquals(40.0, imp.hp)
     }
 
     @Test
-    fun `imp should follow player`() = viewsTest {
+    fun imp_should_follow_player() = viewsTest {
         container {
             val soldier = soldier()
             soldier.initDraw(this, 0.0, 0.0)

@@ -18,7 +18,7 @@ import kotlin.test.assertTrue
 class PlayerTest: ViewsForTesting() {
 
     @Test
-    fun `may move should not change player position when player is not running`() = viewsTest {
+    fun may_move_should_not_change_player_position_when_player_is_not_running() = viewsTest {
         container {
             val soldier = Soldier(animations = mapOf(), spriteAtlas = resourcesVfs["soldier.xml"].readAtlas())
             soldier.initDraw(this, 0.0, 0.0)
@@ -29,7 +29,7 @@ class PlayerTest: ViewsForTesting() {
     }
 
     @Test
-    fun `player hit by imp should take damage`() = viewsTest{
+    fun player_hit_by_imp_should_take_damage() = viewsTest{
         container {
             val imp = EntitiesBuilder.imp()
             val soldier = EntitiesBuilder.soldier()
@@ -43,7 +43,7 @@ class PlayerTest: ViewsForTesting() {
     }
 
     @Test
-    fun `may move should change player x position`() = viewsTest {
+    fun may_move_should_change_player_x_position() = viewsTest {
         container {
             val soldier = Soldier(animations = mapOf(), spriteAtlas = resourcesVfs["soldier.xml"].readAtlas())
             soldier.initDraw(this, 0.0, 0.0)
@@ -64,7 +64,7 @@ class PlayerTest: ViewsForTesting() {
     }
 
     @Test
-    fun `may move should change player y position`() = viewsTest {
+    fun may_move_should_change_player_y_position() = viewsTest {
         container {
             val soldier = Soldier(animations = mapOf(), spriteAtlas = resourcesVfs["soldier.xml"].readAtlas())
             soldier.initDraw(this, 0.0, 0.0)

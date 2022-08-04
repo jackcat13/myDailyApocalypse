@@ -9,7 +9,7 @@ import kotlin.test.assertEquals
 class LightningStrikeTest {
 
     @Test
-    fun `lightning strike for new soldier should deals 75`(){
+    fun lightning_strike_for_new_soldier_should_deals_75(){
         val soldier = Soldier(animations = mapOf(), spriteAtlas = Atlas(listOf()), passiveSkills = mutableListOf(LightningStrike()))
         val imp = Imp(spriteAtlas = Atlas(listOf()))
         imp.hitBy(soldier)

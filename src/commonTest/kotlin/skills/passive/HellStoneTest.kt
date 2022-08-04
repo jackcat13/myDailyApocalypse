@@ -9,7 +9,7 @@ import kotlin.test.assertEquals
 class HellStoneTest {
 
     @Test
-    fun `Hell stone for new soldier should deals 120`(){
+    fun hell_stone_for_new_soldier_should_deals_120(){
         val soldier = Soldier(animations = mapOf(), spriteAtlas = Atlas(listOf()), passiveSkills = mutableListOf(HellStone()))
         val imp = Imp(spriteAtlas = Atlas(listOf()))
         imp.hitBy(soldier)

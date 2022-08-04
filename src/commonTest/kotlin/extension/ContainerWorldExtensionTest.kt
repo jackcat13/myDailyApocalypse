@@ -17,7 +17,7 @@ import kotlin.test.assertEquals
 class ContainerWorldExtensionTest(): ViewsForTesting() {
 
     @Test
-    fun `world should generate properly`() = viewsTest {
+    fun world_should_generate_properly() = viewsTest {
         var world = World()
         generateWorld(world)
         assertEquals(9, world.chunks.size)
@@ -26,7 +26,7 @@ class ContainerWorldExtensionTest(): ViewsForTesting() {
     }
 
     @Test
-    fun `world should regenerate left chunks when player is at its right limits`() = viewsTest {
+    fun world_should_regenerate_left_chunks_when_player_is_at_its_right_limits() = viewsTest {
         container {
             var world = World()
             initFastSpriteContainers()
@@ -42,7 +42,7 @@ class ContainerWorldExtensionTest(): ViewsForTesting() {
     }
 
     @Test
-    fun `world should regenerate right chunks when player is at its left limits`() = viewsTest {
+    fun world_should_regenerate_right_chunks_when_player_is_at_its_left_limits() = viewsTest {
         container {
             var world = World()
             initFastSpriteContainers()
@@ -58,7 +58,7 @@ class ContainerWorldExtensionTest(): ViewsForTesting() {
     }
 
     @Test
-    fun `world should regenerate top chunks when player is at its bottom limits`() = viewsTest {
+    fun world_should_regenerate_top_chunks_when_player_is_at_its_bottom_limits() = viewsTest {
         container {
             var world = World()
             initFastSpriteContainers()
@@ -74,7 +74,7 @@ class ContainerWorldExtensionTest(): ViewsForTesting() {
     }
 
     @Test
-    fun `world should regenerate bottom chunks when player is at its top limits`() = viewsTest {
+    fun world_should_regenerate_bottom_chunks_when_player_is_at_its_top_limits() = viewsTest {
         container {
             var world = World()
             initFastSpriteContainers()
