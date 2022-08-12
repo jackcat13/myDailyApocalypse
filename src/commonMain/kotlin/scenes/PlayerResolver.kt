@@ -1,13 +1,13 @@
 package scenes
 
+import config.PlayableCharacter
 import entities.Player
-import entities.Soldier
-import utils.EntitiesBuilder
-import kotlin.reflect.KClass
+import utils.EntitiesBuilder.soldier
+import utils.EntitiesBuilder.wolf
 
-suspend fun resolveSelectedPlayer(selectedPlayer: KClass<out Player>): Player {
+suspend fun resolveSelectedPlayer(selectedPlayer: PlayableCharacter): Player {
     return when (selectedPlayer){
-        Soldier::class -> EntitiesBuilder.soldier()
-        else -> EntitiesBuilder.soldier()
+        PlayableCharacter.Soldier -> soldier()
+        PlayableCharacter.Wolf -> wolf()
     }
 }

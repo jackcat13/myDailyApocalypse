@@ -27,11 +27,11 @@ class MainScene: Scene(){
 		initKeymap()
 		uiButton(START_GAME_LABEL) {
 			position(MainModule.virtualWidth/2, 20)
-		}.onClick { launchImmediately { sceneContainer.changeTo<LevelConfigurationScene>() } }
+		}.onPress { launchImmediately { sceneContainer.changeTo<LevelConfigurationScene>() } }
 		uiButton(CHANGE_KEYMAP_LABEL) {
 			position(MainModule.virtualWidth/2, 80)
 			scaledWidth = 200.0
-		}.onClick { launchImmediately { sceneContainer.changeTo<KeymapConfigurationScene>() } }
+		}.onPress { launchImmediately { sceneContainer.changeTo<KeymapConfigurationScene>() } }
 	}
 
 	private fun initKeymap(){

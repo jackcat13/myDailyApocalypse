@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<TextureAtlas imagePath="wolf.png" width="35"  height="24">
+    <sprite n="stand-00.png" x="14" y="20" w="35" h="24"/>
+    <sprite n="stand-01.png" x="79" y="20" w="35" h="24"/>
+    <sprite n="stand-02.png" x="142" y="20" w="35" h="24"/>
+    <sprite n="stand-03.png" x="206" y="20" w="35" h="24"/>
+    <sprite n="stand-04.png" x="270" y="20" w="35" h="24"/>
+    <sprite n="stand-05.png" x="334" y="20" w="35" h="24"/>
+    <sprite n="stand-06.png" x="398" y="20" w="35" h="24"/>
+    <sprite n="stand-07.png" x="463" y="20" w="35" h="24"/>
+    <sprite n="stand-08.png" x="529" y="20" w="35" h="24"/>
+    <sprite n="stand-09.png" x="591" y="20" w="35" h="24"/>
+    <sprite n="stand-10.png" x="653" y="20" w="35" h="24"/>
+    <sprite n="stand-11.png" x="718" y="20" w="35" h="24"/>
+    <sprite n="run-00.png" x="15" y="83" w="39" h="21"/>
+    <sprite n="run-01.png" x="80" y="83" w="39" h="21"/>
+    <sprite n="run-02.png" x="142" y="83" w="39" h="21"/>
+    <sprite n="run-03.png" x="209" y="83" w="39" h="21"/>
+    <sprite n="run-04.png" x="273" y="83" w="39" h="21"/>
+    <sprite n="run-05.png" x="338" y="83" w="39" h="21"/>
+    <sprite n="run-06.png" x="403" y="83" w="39" h="21"/>
+    <sprite n="run-07.png" x="464" y="83" w="39" h="21"/>
+    <sprite n="death-00.png" x="14" y="132" w="54" h="35"/>
+    <sprite n="death-01.png" x="78" y="132" w="54" h="35"/>
+    <sprite n="death-02.png" x="142" y="132" w="54" h="35"/>
+    <sprite n="death-03.png" x="203" y="132" w="54" h="35"/>
+    <sprite n="death-04.png" x="264" y="132" w="54" h="35"/>
+    <sprite n="death-05.png" x="333" y="132" w="54" h="35"/>
+    <sprite n="death-06.png" x="396" y="132" w="54" h="35"/>
+    <sprite n="death-07.png" x="460" y="132" w="54" h="35"/>
+    <sprite n="death-08.png" x="524" y="132" w="54" h="35"/>
+    <sprite n="death-09.png" x="589" y="132" w="54" h="35"/>
+    <sprite n="death-10.png" x="646" y="132" w="54" h="35"/>
+    <sprite n="death-11.png" x="717" y="132" w="54" h="35"/>
+    <sprite n="death-12.png" x="781" y="132" w="54" h="35"/>
+    <sprite n="death-13.png" x="845" y="132" w="54" h="35"/>
+    <sprite n="death-14.png" x="909" y="132" w="54" h="35"/>
+    <sprite n="death-14.png" x="973" y="132" w="54" h="35"/>
+    <sprite n="death-14.png" x="1037" y="132" w="54" h="35"/>
+    <sprite n="death-14.png" x="1101" y="132" w="54" h="35"/>
+</TextureAtlas>

@@ -6,6 +6,7 @@ import com.soywiz.korge.view.*
 import com.soywiz.korim.atlas.Atlas
 import com.soywiz.korim.bitmap.flippedX
 import com.soywiz.korio.async.runBlockingNoSuspensions
+import config.ExcludeFromJacocoGeneratedReport
 import config.GameConfig
 import config.GameStatus
 import entities.PlayerStatus.*
@@ -169,4 +170,57 @@ abstract class Player(
      * Process player main attack. To override for each playable character.
      */
     abstract fun processMainAttack(container: Container, enemies: FastArrayList<Enemy>)
+
+    /**
+     * Default main attack checks implementation
+     */
+    fun Sprite.maySlashEnnemies(enemies: FastArrayList<Enemy>) {
+        val enemiesToKill = mutableListOf<Enemy>()
+        enemies.forEach {
+            val enemySprite = it.sprite!!
+            if (collidesWith(enemySprite)) {
+                enemySprite.hitAnimation()
+                if (it.hitBy(this@Player)) {
+                    enemiesToKill.add(it)
+                }
+            }
+        }
+        removeFromParent()
+        enemiesToKill.forEach {
+            it.sprite!!.removeFromParent()
+            enemies.remove(it)
+        }
+    }
+
+    @ExcludeFromJacocoGeneratedReport("Won't test equals method")
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || this::class != other::class) return false
+
+        other as Player
+
+        if (maxHp != other.maxHp) return false
+        if (hp != other.hp) return false
+        if (range != other.range) return false
+        if (speed != other.speed) return false
+        if (width != other.width) return false
+        if (height != other.height) return false
+        if (attackSpeed != other.attackSpeed) return false
+        if (damage != other.damage) return false
+
+        return true
+    }
+
+    @ExcludeFromJacocoGeneratedReport("Won't test hashcode method")
+    override fun hashCode(): Int {
+        var result = maxHp.hashCode()
+        result = 31 * result + hp.hashCode()
+        result = 31 * result + range.hashCode()
+        result = 31 * result + speed.hashCode()
+        result = 31 * result + width
+        result = 31 * result + height
+        result = 31 * result + attackSpeed.hashCode()
+        result = 31 * result + damage.hashCode()
+        return result
+    }
 }

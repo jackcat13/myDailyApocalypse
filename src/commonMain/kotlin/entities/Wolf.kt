@@ -3,14 +3,13 @@ package entities
 import com.soywiz.kds.FastArrayList
 import com.soywiz.korge.view.*
 import com.soywiz.korim.atlas.Atlas
-import config.ExcludeFromJacocoGeneratedReport
 import skills.active.ActiveSkill
 import skills.passive.PassiveSkill
 import utils.AnimationTitle
-import utils.AnimationTitle.SLASH
+import utils.AnimationTitle.BITE
 
 /**
- * Soldier class to create soldier playable character
+ * Wolf class to create wolf playable character
  * @property maxHp Maximum health
  * @property hp Current health
  * @property range Range
@@ -28,17 +27,17 @@ import utils.AnimationTitle.SLASH
  * @property passiveSkills Soldier passive skills
  * @property activeSkills Soldier active skills
  */
-class Soldier (
-        override var maxHp: Double = 120.0,
+class Wolf (
+        override var maxHp: Double = 80.0,
         override var hp: Double = maxHp,
-        override var range: Double = 205.0,
+        override var range: Double = 105.0,
         override var spriteAtlas: Atlas,
         override var sprite: Sprite? = null,
-        override var speed: Double = 3.0,
+        override var speed: Double = 6.0,
         override var width: Int = 20,
         override var height: Int = 40,
-        override var attackSpeed: Double = 1.0,
-        override var damage: Double = 60.0,
+        override var attackSpeed: Double = 2.0,
+        override var damage: Double = 30.0,
         override var playerStatus: PlayerStatus = PlayerStatus.STAY,
         override var moveXDirection: Char? = null,
         override var previousXDirection: Char? = null,
@@ -49,15 +48,15 @@ class Soldier (
 ): Player(maxHp, hp, range, spriteAtlas, sprite, speed, width, height, attackSpeed, damage, playerStatus, moveXDirection, previousXDirection, moveYDirection, animations, passiveSkills) {
 
     /**
-     * Handles the soldier main attack
+     * Handles the wolf main attack
      */
     override fun processMainAttack(container: Container, enemies: FastArrayList<Enemy>) {
-        val slash = container.sprite(animations[SLASH]!!.getSpriteAnimation(prefix = "slash"))
-        slash.addUpdater { position(sprite!!.x + sprite!!.width/2 + 20, sprite!!.y) }
-        slash.scaledWidth = range
-        slash.playAnimation()
-        slash.onAnimationCompleted.once {
-            slash.maySlashEnnemies(enemies)
+        val bite = container.sprite(animations[BITE]!!.getSpriteAnimation(prefix = "bite"))
+        bite.addUpdater { position(sprite!!.x + sprite!!.width + 20, sprite!!.y + sprite!!.height/2) }
+        bite.scaledWidth = range
+        bite.playAnimation()
+        bite.onAnimationCompleted.once {
+            bite.maySlashEnnemies(enemies)
         }
     }
 }
