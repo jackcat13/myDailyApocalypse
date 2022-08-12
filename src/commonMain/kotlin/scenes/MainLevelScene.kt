@@ -12,6 +12,7 @@ import com.soywiz.korio.async.launchImmediately
 import config.ExcludeFromJacocoGeneratedReport
 import config.GameConfig.chunksSize
 import config.GameStatus
+import config.PlayableCharacter
 import entities.Enemy
 import entities.Player
 import entities.PlayerStatus.DEAD
@@ -32,7 +33,7 @@ const val EXIT_BUTTON = "ExitButton"
  * @param enemies List of enemies that appear during the game
  */
 @ExcludeFromJacocoGeneratedReport("Won't test scenes, focus is on logic testing")
-class MainLevelScene(private val selectedPlayer: KClass<out Player>): Scene() {
+class MainLevelScene(private val selectedPlayer: PlayableCharacter): Scene() {
     var world = World()
     val enemies: FastArrayList<Enemy> = fastArrayListOf()
     override suspend fun SContainer.sceneInit() {
@@ -47,7 +48,6 @@ class MainLevelScene(private val selectedPlayer: KClass<out Player>): Scene() {
             addFixedUpdaterWithPause(0.1.timesPerSecond) {
                 launchImmediately { enemies.add(generateImp(this@cameraContainer, currentPlayer)) }
             }
-            containerRoot.text("${enemies.size}").apply { fontSize = 32.0 }.let { addUpdaterWithPause { it.text = "${enemies.size}" } }
             attacksUpdater(currentPlayer, enemies)
             sendChildToFront(currentPlayer.sprite as View)
         }

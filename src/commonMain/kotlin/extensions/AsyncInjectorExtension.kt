@@ -16,5 +16,5 @@ fun AsyncInjector.mapPrototypes() {
     mapPrototype { MainScene() }
     mapPrototype { LevelConfigurationScene() }
     mapPrototype { KeymapConfigurationScene() }
-    mapPrototype { MainLevelScene(Soldier::class) }
+    mapPrototype { MainLevelScene(get()) }
 }

@@ -6,6 +6,7 @@ import com.soywiz.korio.file.std.resourcesVfs
 import entities.Imp
 import entities.Player
 import entities.Soldier
+import entities.Wolf
 import extensions.addUpdaterWithPause
 import utils.GameRandom.generateRand
 
@@ -36,8 +37,11 @@ object EntitiesBuilder{
      * Generate soldier playable character.
      */
     internal suspend fun soldier() = Soldier(spriteAtlas = resourcesVfs["soldier.xml"].readAtlas(), animations = animations())
-    //suspend fun marine() = Player(spriteAtlas = resourcesVfs["marine.xml"].readAtlas())
-    //suspend fun mage() = Player(spriteAtlas = resourcesVfs["mage.xml"].readAtlas())
+
+    /**
+     * Generate wolf playable character.
+     */
+    internal suspend fun wolf() = Wolf(spriteAtlas = resourcesVfs["wolf.xml"].readAtlas(), animations = animations())
 
     /**
      * Generate imp enemy.
