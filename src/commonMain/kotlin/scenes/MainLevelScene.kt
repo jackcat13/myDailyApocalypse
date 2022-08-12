@@ -16,10 +16,12 @@ import entities.Enemy
 import entities.Player
 import entities.PlayerStatus.DEAD
 import entities.PlayerStatus.DEAD_MENU
+import entities.Soldier
 import extensions.*
 import module.MainModule
 import utils.EntitiesBuilder.generateImp
 import utils.EntitiesBuilder.soldier
+import kotlin.reflect.KClass
 
 const val EXIT_BUTTON_TEXT = "Exit"
 const val EXIT_BUTTON = "ExitButton"
@@ -30,13 +32,13 @@ const val EXIT_BUTTON = "ExitButton"
  * @param enemies List of enemies that appear during the game
  */
 @ExcludeFromJacocoGeneratedReport("Won't test scenes, focus is on logic testing")
-class MainLevelScene(): Scene() {
+class MainLevelScene(private val selectedPlayer: KClass<out Player>): Scene() {
     var world = World()
     val enemies: FastArrayList<Enemy> = fastArrayListOf()
     override suspend fun SContainer.sceneInit() {
         world = World()
         stage?.hitTestEnabled = false
-        val currentPlayer: Player = soldier()
+        val currentPlayer: Player = resolveSelectedPlayer(selectedPlayer)
         val camera = cameraContainer(MainModule.virtualWidth.toDouble(), MainModule.virtualHeight.toDouble()) {
             initFastSpriteContainers()
             currentPlayer.initDraw(this, -chunksSize, -chunksSize)

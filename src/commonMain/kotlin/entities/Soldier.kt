@@ -3,6 +3,7 @@ package entities
 import com.soywiz.kds.FastArrayList
 import com.soywiz.korge.view.*
 import com.soywiz.korim.atlas.Atlas
+import config.ExcludeFromJacocoGeneratedReport
 import skills.active.ActiveSkill
 import skills.passive.PassiveSkill
 import utils.AnimationTitle
@@ -77,4 +78,38 @@ class Soldier (
             enemies.remove(it)
         }
     }
+
+    @ExcludeFromJacocoGeneratedReport("Won't test equals method")
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || this::class != other::class) return false
+
+        other as Soldier
+
+        if (maxHp != other.maxHp) return false
+        if (hp != other.hp) return false
+        if (range != other.range) return false
+        if (speed != other.speed) return false
+        if (width != other.width) return false
+        if (height != other.height) return false
+        if (attackSpeed != other.attackSpeed) return false
+        if (damage != other.damage) return false
+
+        return true
+    }
+
+    @ExcludeFromJacocoGeneratedReport("Won't test hashcode method")
+    override fun hashCode(): Int {
+        var result = maxHp.hashCode()
+        result = 31 * result + hp.hashCode()
+        result = 31 * result + range.hashCode()
+        result = 31 * result + speed.hashCode()
+        result = 31 * result + width
+        result = 31 * result + height
+        result = 31 * result + attackSpeed.hashCode()
+        result = 31 * result + damage.hashCode()
+        return result
+    }
+
+
 }
