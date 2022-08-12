@@ -25,10 +25,9 @@ class MainScene: Scene(){
 
 	override suspend fun SContainer.sceneInit() {
 		initKeymap()
-		val image = uiButton(START_GAME_LABEL) {
+		uiButton(START_GAME_LABEL) {
 			position(MainModule.virtualWidth/2, 20)
-		}
-		image.onClick { launchImmediately { sceneContainer.changeTo<MainLevelScene>() } }
+		}.onClick { launchImmediately { sceneContainer.changeTo<LevelConfigurationScene>() } }
 		uiButton(CHANGE_KEYMAP_LABEL) {
 			position(MainModule.virtualWidth/2, 80)
 			scaledWidth = 200.0
