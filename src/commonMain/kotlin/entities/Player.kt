@@ -223,4 +223,20 @@ abstract class Player(
         result = 31 * result + damage.hashCode()
         return result
     }
+
+    abstract fun characterName(): String
+    override fun toString(): String {
+        return """${characterName()}
+        
+HP : $maxHp
+        
+Range : $range
+        
+Speed : $speed
+        
+Attack speed : $attackSpeed
+        
+Damage : $damage"""
+    }
+
 }

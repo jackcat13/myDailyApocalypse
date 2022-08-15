@@ -8,6 +8,8 @@ import skills.passive.PassiveSkill
 import utils.AnimationTitle
 import utils.AnimationTitle.BITE
 
+const val WOLF_NAME = "Wolf"
+
 /**
  * Wolf class to create wolf playable character
  * @property maxHp Maximum health
@@ -59,4 +61,6 @@ class Wolf (
             bite.maySlashEnnemies(enemies)
         }
     }
+
+    override fun characterName() = WOLF_NAME
 }

@@ -5,7 +5,9 @@ import com.soywiz.korim.atlas.readAtlas
 import com.soywiz.korio.file.std.resourcesVfs
 import entities.Imp
 import entities.Player
+import entities.SOLDIER_NAME
 import entities.Soldier
+import entities.WOLF_NAME
 import entities.Wolf
 import extensions.addUpdaterWithPause
 import utils.GameRandom.generateRand
@@ -26,6 +28,16 @@ object EntitiesBuilder{
         container.addUpdaterWithPause { imp.mayFollowPlayer(currentPlayer) }
         imp.mayHitPlayer(container, currentPlayer)
         return imp
+    }
+    /**
+     * Resolve character based on its name
+     */
+    internal suspend fun resolveCharacter(characterName: String): Player{
+        return when (characterName){
+            SOLDIER_NAME -> soldier()
+            WOLF_NAME -> wolf()
+            else -> soldier()
+        }
     }
 
     /**
