@@ -2,7 +2,7 @@ package extensions
 
 import com.soywiz.korinject.AsyncInjector
 import config.ExcludeFromJacocoGeneratedReport
-import entities.Soldier
+import entities.Player
 import scenes.KeymapConfigurationScene
 import scenes.LevelConfigurationScene
 import scenes.MainLevelScene

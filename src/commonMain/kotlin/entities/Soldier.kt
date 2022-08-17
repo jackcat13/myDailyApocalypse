@@ -8,6 +8,9 @@ import skills.active.ActiveSkill
 import skills.passive.PassiveSkill
 import utils.AnimationTitle
 import utils.AnimationTitle.SLASH
+import utils.EntitiesBuilder.soldier
+
+const val SOLDIER_NAME = "Soldier"
 
 /**
  * Soldier class to create soldier playable character
@@ -60,4 +63,6 @@ class Soldier (
             slash.maySlashEnnemies(enemies)
         }
     }
+
+    override fun characterName() = SOLDIER_NAME
 }
