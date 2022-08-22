@@ -15,12 +15,11 @@ import extensions.keymapTextInputs
 @ExcludeFromJacocoGeneratedReport("Won't test scenes, focus is on logic testing")
 class KeymapConfigurationScene : Scene() {
     companion object{
-        const val BACK_BUTTON = "BackButton"
         const val BACK_LABEL = "Back"
     }
 
     override suspend fun SContainer.sceneInit() {
         keymapTextInputs()
-        uiButton(BACK_LABEL).onClick { launchImmediately { sceneContainer.changeTo<MainScene>() } }!!.name(BACK_BUTTON)
+        uiButton(BACK_LABEL).onPress { launchImmediately { sceneContainer.changeTo<MainScene>() } }
     }
 }

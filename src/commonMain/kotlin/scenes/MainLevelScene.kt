@@ -60,10 +60,12 @@ class MainLevelScene(private val selectedPlayer: String): Scene() {
                 currentPlayer.launchDeathAnimation()
                 GameStatus.pause = true
                 uiButton(EXIT_BUTTON_TEXT).name(EXIT_BUTTON).position(10.0, 200.0).onPress {
-                    launchImmediately { sceneContainer.changeTo<MainScene>() }
-                    world = World()
-                    enemies.clear()
-                    GameStatus.pause = false
+                    launchImmediately {
+                        world = World()
+                        enemies.clear()
+                        GameStatus.pause = false
+                        sceneContainer.changeTo<MainScene>()
+                    }
                 }
             }
         }
